@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
-from app.schemas.user import User
+from app.schemas.user import User, UserCreate
 from typing import List, Dict, Optional, Union
+from app.utils.helpers import generate_num8_digit as generate_id
 
 router = APIRouter()
 
@@ -36,3 +37,15 @@ def read_users(dni: Optional[str] = None):
         return {'user': db_user}
     else:
         return {'users': users}
+
+@router.post('/users', response_model=User)
+def create_user(user: UserCreate):
+    permissions_valid = ['administrador', 'operador']
+    new_id = generate_id()
+    new_user = user.model_dump()
+    permission = new_user['permission']
+    new_user['id']=new_id
+    if permission  not in permissions_valid:
+        raise HTTPException(status_code=400, detail=f'permision {permission} invalid')
+    users.append(new_user)
+    return new_user
