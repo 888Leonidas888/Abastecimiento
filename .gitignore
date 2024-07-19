@@ -1,5 +1,10 @@
-#Entorno virtual
+#entorno virtual
 .dev
+
+#archivo basura
 BackEnd/app/api/v1/__pycache__/users.cpython-312.pyc
 BackEnd/app/schemas/__pycache__/user.cpython-312.pyc
+BackEnd/app/utils/__pycache__/__init__.cpython-312.pyc
+BackEnd/app/utils/__pycache__/helpers.cpython-312.pyc
+
 BackEnd/tests/
