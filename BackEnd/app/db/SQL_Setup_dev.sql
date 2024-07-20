@@ -6,6 +6,13 @@ FLUSH PRIVILEGES;
 /* Setup of the database */
 CREATE DATABASE IF NOT EXISTS Salmon_DB_dev;
 USE Salmon_DB_dev;
+
+CREATE TABLE IF NOT EXISTS batches (
+    id VARCHAR(50) NOT NULL PRIMARY KEY UNIQUE,
+    created_at DATE,
+    updated_at DATE
+);
+
 CREATE TABLE IF NOT EXISTS products(
     id VARCHAR(50) PRIMARY KEY NOT NULL UNIQUE,
     batch_id VARCHAR(50),
@@ -14,12 +21,12 @@ CREATE TABLE IF NOT EXISTS products(
     origin VARCHAR(255) NOT NULL,
     destination VARCHAR(255) NOT NULL,
     status VARCHAR(255) NOT NULL,
-    due_time DATE NOT NULL,
+    due_date DATE NOT NULL,
     freshness VARCHAR(255) NOT NULL,
     qr_pallet VARCHAR(255) NOT NULL,
     created_at DATE,
     updated_at DATE,
-    FOREIGN KEY (batch_id) REFERENCES batch(id)
+    FOREIGN KEY (batch_id) REFERENCES batches(id)
 );
 
 CREATE TABLE IF NOT EXISTS users (
@@ -34,15 +41,9 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at DATE
 );
 
-CREATE TABLE IF NOT EXISTS batches (
-    id VARCHAR(50) NOT NULL PRIMARY KEY UNIQUE,
-    created_at DATE,
-    updated_at DATE
-);
-
 CREATE TABLE IF NOT EXISTS productivity (
     id_user VARCHAR(50),
-    id_product VARCHAR(255),
+    id_product VARCHAR(50),
     created_at DATE,
     FOREIGN KEY (id_user) REFERENCES users(id),
     FOREIGN KEY (id_product) REFERENCES products(id)
