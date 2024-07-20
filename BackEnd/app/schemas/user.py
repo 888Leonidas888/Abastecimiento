@@ -14,4 +14,4 @@ class UserCreate(UserBase):
 
 
 class User(UserBase):
-    id: int
+    id: str
