@@ -48,6 +48,19 @@ def create_user(user: UserCreate):
     permission = new_user['permission']
     new_user['id'] = new_id
     if permission not in permissions_valid:
-        raise HTTPException(status_code=400, detail=f'permision {permission} invalid')
+        raise HTTPException(status_code=400,
+                            detail=f'permision {permission} invalid')
     users.append(new_user)
     return new_user
+
+
+@router.delete('/users/{dni}', response_model=Dict[str, str])
+def delete_user(dni: str):
+    global users
+    user_to_delete = next((user for user in users if user["dni"] == dni), None)
+
+    if not user_to_delete:
+        raise HTTPException(status_code=404, detail='User not found')
+
+    users = [user for user in users if user['dni'] != dni]
+    return {'message': 'User delete'}
