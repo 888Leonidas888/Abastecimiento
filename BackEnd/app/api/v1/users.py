@@ -1,9 +1,11 @@
 from fastapi import APIRouter, HTTPException
-from app.schemas.user import User, UserCreate
+from app.schemas.user import User, UserCreate, UserUpdate
 from typing import List, Dict, Optional, Union
 from app.utils.helpers import generate_id
 
 router = APIRouter()
+
+permissions_valid = ['administrador', 'operador']
 
 users = [
     {
@@ -42,14 +44,13 @@ def read_users(dni: Optional[str] = None):
 
 @router.post('/users', response_model=User)
 def create_user(user: UserCreate):
-    permissions_valid = ['administrador', 'operador']
     new_id = generate_id()
     new_user = user.model_dump()
     permission = new_user['permission']
     new_user['id'] = new_id
     if permission not in permissions_valid:
         raise HTTPException(status_code=400,
-                            detail=f'permision {permission} invalid')
+                            detail=f'Permision {permission} invalid')
     users.append(new_user)
     return new_user
 
@@ -64,3 +65,20 @@ def delete_user(dni: str):
 
     users = [user for user in users if user['dni'] != dni]
     return {'message': 'User delete'}
+
+
+@router.put('/users/{dni}', response_model=User)
+def update_user(dni: str, user_update: UserUpdate):
+    global users
+
+    user_to_update = next((user for user in users if user['dni'] == dni), None)
+
+    if not user_to_update:
+        raise HTTPException(status_code=404, detail='User not found')
+
+    if user_update.permission and user_update.permission not in permissions_valid:
+        raise HTTPException(status_code=400,
+                            detail=f'Permision {user_update.permission} invalid')
+
+    user_to_update.update(user_update.model_dump(exclude_unset=True))
+    return user_to_update

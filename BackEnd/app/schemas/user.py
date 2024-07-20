@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class UserBase(BaseModel):
@@ -12,6 +13,12 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     password: str
 
+
+class UserUpdate(BaseModel):
+    password: Optional[str] = None
+    name_user: Optional[str] = None
+    last_name: Optional[str] = None
+    permission: Optional[str] = None
 
 class User(UserBase):
     id: str
