@@ -10,10 +10,10 @@ load_dotenv()
 def connect():
     try:
         connection = mysql.connector.connect(
-            host='localhost',
-            user='salmon_user',
-            password=f"{getenv('SALMON_USER_PASS')}",
-            database='Salmon_DB'
+            host=f"{getenv('SALMON_HOST_DEV')}",
+            user=f"{getenv('SALMON_USER_DEV')}",
+            password=f"{getenv('SALMON_USER_PASS_DEV')}",
+            database=f"{getenv('SALMON_DATABASE_DEV')}"
         )
         if connection.is_connected():
             cursor = connection.cursor()

@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from app.schemas.user import User, UserCreate
 from typing import List, Dict, Optional, Union
 from app.utils.helpers import generate_id
+from db.connector import connect, disconnect
 
 router = APIRouter()
 
@@ -37,7 +38,13 @@ def read_users(dni: Optional[str] = None):
             raise HTTPException(status_code=404, detail='User not found')
         return {'user': db_user}
     else:
-        return {'users': users}
+        connection, cursor = connect()
+        query = 'SELECT * from users'
+        cursor.execute(query)
+        fetched_data = cursor.fetchall()
+        disconnect(connection, cursor)
+
+        return {'users': fetched_data}
 
 
 @router.post('/users', response_model=User)
