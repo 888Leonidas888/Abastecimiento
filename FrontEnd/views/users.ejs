@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body>
+    <div class="back">
+      <a href="/menu">
+        <span class="material-symbols-rounded"> arrow_back </span></a
+      >
+    </div>
+    <div class="iconsRigth">
+      <span class="material-symbols-rounded"> person_add </span>
+      <span class="material-symbols-rounded" id="logout"> logout </span>
+    </div>
+    <h1>Gestión de usuarios</h1>
+    <div class="users">
+      <table class="tableUsers">
+        <thead>
+          <tr>
+            <th>Editar</th>
+            <th>DNI</th>
+            <th>Usuario</th>
+            <th>Contraseña</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="material-symbols-rounded">edit</span></td>
+            <td>73039293</td>
+            <td>echanjan</td>
+            <td>3030</td>
+            <td><span class="material-symbols-rounded">delete</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="profile">
+      <span class="material-symbols-rounded"> account_circle </span>
+      <div>
+        <h3>Nombre de usuario</h3>
+        <p>Modo Administrador</p>
+      </div>
+    </div>
+    <!-- MODAL EXITO -->
+    <div id="modalExito">
+      <div class="close">
+        <span class="material-symbols-rounded"> close </span>
+      </div>
+      <h3>Exito!</h3>
+      <h4>Se cargaron xx de x</h4>
+    </div>
+    <!-- MODAL CREAR USUARIO -->
+    <div id="modalAddUser">
+      <div class="close">
+        <span class="material-symbols-rounded"> close </span>
+      </div>
+      <h3>Crear usuario</h3>
+      <form action="" id="formAddUser">
+        <input type="text" placeholder="DNI">
+        <input type="text" placeholder="Nombre de usuario">
+        <input type="text" placeholder="Contraseña">
+        <input type="text" placeholder="Nombres">
+        <input type="text" placeholder="Apellidos">
+        <input type="text" placeholder="Permiso">
+      </form>
+    </div>
+
+    <div class="overlay"></div>
+  </body>
+</html>
