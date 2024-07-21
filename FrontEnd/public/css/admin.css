@@ -1,0 +1,213 @@
+@import url(/css/root.css);
+
+/* CARGA DE PRODUCTOS */
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.overlay {
+    display: block; /*cambiar block*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.733) ;
+    backdrop-filter: blur(5px);
+}
+
+.formProducts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boxProductAdmin {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inport, .send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--grey-border);
+    padding: 10px;
+    border-radius: 8px;
+    width: 25%;
+    margin-bottom: 10px;
+}
+
+.inport:hover, .send:hover {
+    transform: var(--scale-button);
+    box-shadow: var(--box-shadow);
+}
+
+.boxProductAdmin span {
+    font-size: 32px;
+    margin-left: 10px;
+}
+
+/* MODAL EXITO */
+
+#modalExito {
+    display: none; /*cambiar block*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    background-color: var(--color-white);
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+#modalExito h3 {
+    margin-bottom: 5px;
+}
+
+.close {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.close span {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--grey-border);
+    cursor: pointer;
+}
+
+.close span:hover {
+    color: var(--button-hover);
+}
+
+/* USER */
+
+
+.users {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.tableUsers {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+    box-shadow: var(--box-shadow);
+    border-radius: 8px;
+    overflow: hidden;
+    height: 60vh; /* Altura fija de la tabla */
+    display: flex;
+    flex-direction: column;
+}
+
+.tableUsers thead {
+    background-color: var(--grey-border);
+    color: #ffffff;
+    font-weight: bold;
+    display: table;
+    width: 100%; /* Ajuste para el scroll vertical */
+    table-layout: fixed; /* Para que las columnas tengan el mismo ancho */
+}
+
+.tableUsers th, .tableUsers td {
+    padding: 12px 15px;
+    text-align: center;
+
+}
+
+.tableUsers tbody {
+    display: block;
+    overflow: auto;
+    height: calc(100% - 45px); /* Altura de tbody restando la altura de thead */
+}
+
+.tableUsers tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /* Para que las columnas tengan el mismo ancho */
+    border-bottom: 1px solid #dddddd;
+}
+
+.tableUsers tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.tableUsers tbody tr:last-of-type {
+    border-bottom: 2px solid var(--grey-border);
+}
+
+.tableUsers tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* MODAL CREAR USUARIO */
+
+#modalAddUser {
+    display: block; /*cambiar block*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    background-color: var(--color-white);
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+#modalAddUser h3 {
+    margin-bottom: 5px;
+}
+
+#formAddUser {
+    display: flex;
+    flex-direction: column;
+}
+
+#formAddUser input {
+    padding: 8px;
+    border: 1px solid var(--grey-border);
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+#formAddUser input:hover {
+    border: 1px solid var(--button-hover);
+}
+
+#formAddUser input:focus {
+    border: 1.5px solid var(--button-hover) 
+}
+
+.close {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.close span {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--grey-border);
+    cursor: pointer;
+}
+
+.close span:hover {
+    color: var(--button-hover);
+}
+

@@ -1,0 +1,41 @@
+@import url(/css/root.css);
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.boxOptions {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.supply, .products, .users {
+    border: 2px solid var(--grey-border);
+    padding: 20px;
+    border-radius: 8px;
+    width: 25%;
+    text-decoration: none;
+}
+
+.boxProducts, .boxSupply, .boxUsers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.supply:hover, .products:hover, .users:hover {
+    transform: var(--scale-button);
+    box-shadow: var(--box-shadow);
+}
+
+.boxOptions span {
+    font-size: 64px;
+    margin: 20px 0px;
+}
+

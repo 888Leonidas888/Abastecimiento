@@ -1,0 +1,87 @@
+:root {
+    --color-text: rgb(36, 36, 36);
+    --color-principal: rgb(254, 0, 26);
+    --background-body: rgb(247, 247, 247);
+    --color-white: white;
+    --grey-border: grey;
+    --grey-button: rgb(231, 231, 231);
+    --grey-button-hover: rgb(219, 219, 219);
+    --box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    --button-hover:rgb(54, 54, 54);
+    --scale-button: scale(1.01)
+}
+
+body {
+    background-color: var(--background-body);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Mulish;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+    color: var(--color-text);
+}
+
+span {
+    color: var(--color-text);
+}
+
+h1 {
+    margin: 64px 0px;
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 20px;
+}
+
+.back span {
+    font-size: 32px;
+}
+
+
+.iconsRigth {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+}
+
+.iconsRigth span {
+    font-size: 32px;
+    margin-left: 12px;
+}
+
+.iconsRigth #logout {
+    color: #ff0000;
+}
+
+.profile {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
+}
+
+.profile span {
+    font-size: 40px;
+    margin: 0px 12px;
+}
+
+

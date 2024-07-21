@@ -1,0 +1,57 @@
+@import url(/css/root.css);
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background-body);
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.login {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    width: 250px;
+    margin: 20px;
+}
+
+input {
+    padding: 5px;
+    outline: none;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--grey-border);
+    width: 100%;
+}
+
+input:hover {
+    padding: 5px;
+    outline: none;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--color-principal);
+    width: 100%;
+}
+
+button {
+    padding: 5px;
+    outline: none;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--grey-border);
+    width: 100%;
+    background-color: var(--grey-button);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--grey-button-hover);
+}
+
+
