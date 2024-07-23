@@ -9,3 +9,7 @@ BackEnd/app/utils/__pycache__/helpers.cpython-312.pyc
 
 BackEnd/app/db/__pycache__/
 BackEnd/tests/
+
+#frontend
+FrontEnd/node_modules/
+FrontEnd/package-lock.json
