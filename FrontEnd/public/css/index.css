@@ -21,7 +21,7 @@ h1 {
     margin: 20px;
 }
 
-input {
+/* input {
     padding: 5px;
     outline: none;
     margin-bottom: 10px;
@@ -37,7 +37,7 @@ input:hover {
     border-radius: 5px;
     border: 1px solid var(--color-principal);
     width: 100%;
-}
+} */
 
 button {
     padding: 5px;

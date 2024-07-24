@@ -21,8 +21,8 @@
       >
     </div>
     <div class="iconsRigth">
-      <span class="material-symbols-rounded"> person_add </span>
-      <span class="material-symbols-rounded" id="logout"> logout </span>
+      <span id="addUser" class="material-symbols-rounded"> person_add </span>
+      <!-- <span class="material-symbols-rounded" id="logout"> logout </span> -->
     </div>
     <h1>Gestión de usuarios</h1>
     <div class="users">
@@ -38,11 +38,15 @@
         </thead>
         <tbody>
           <tr>
-            <td><span class="material-symbols-rounded">edit</span></td>
+            <td><span id="editUser" class="material-symbols-rounded">edit</span></td>
             <td>73039293</td>
             <td>echanjan</td>
             <td>3030</td>
-            <td><span class="material-symbols-rounded">delete</span></td>
+            <td>
+              <span id="deleteUser" class="material-symbols-rounded"
+                >delete</span
+              >
+            </td>
           </tr>
         </tbody>
       </table>
@@ -65,19 +69,42 @@
     <!-- MODAL CREAR USUARIO -->
     <div id="modalAddUser">
       <div class="close">
-        <span class="material-symbols-rounded"> close </span>
+        <span id="closeAddUser" class="material-symbols-rounded"> close </span>
       </div>
       <h3>Crear usuario</h3>
       <form action="" id="formAddUser">
-        <input type="text" placeholder="DNI">
-        <input type="text" placeholder="Nombre de usuario">
-        <input type="text" placeholder="Contraseña">
-        <input type="text" placeholder="Nombres">
-        <input type="text" placeholder="Apellidos">
-        <input type="text" placeholder="Permiso">
+        <input type="text" placeholder="DNI" />
+        <input type="text" placeholder="Nombre de usuario" />
+        <input type="text" placeholder="Contraseña" />
+        <input type="text" placeholder="Nombres" />
+        <input type="text" placeholder="Apellidos" />
+        <!-- <input type="text" placeholder="Permiso"> -->
+        <select name="permission" id="permissionUAdd">
+          <option value="admin">Administrador</option>
+          <option value="operador">Operador</option>
+        </select>
+        <button id="userCreate" type="submit">Crear</button>
       </form>
     </div>
-
-    <div class="overlay"></div>
+    <!-- MODAL ACTUALIZAR USUARIO -->
+    <div id="modalUpdateUser">
+      <div class="close">
+        <span id="closeUpdateUser" class="material-symbols-rounded"> close </span>
+      </div>
+      <h3>Actualizar usuario</h3>
+      <form action="" id="formUpdateUser">
+        <input type="text" placeholder="Contraseña" />
+        <input type="text" placeholder="Nombres" />
+        <input type="text" placeholder="Apellidos" />
+        <!-- <input type="text" placeholder="Permiso"> -->
+        <select name="permission" id="permissionUUpdate">
+          <option value="admin">Administrador</option>
+          <option value="operador">Operador</option>
+        </select>
+        <button id="userUpdate" type="submit">Actualizar</button>
+      </form>
+    </div>
+    <div id="overlay"></div>
   </body>
+  <script src="/js/users.js"></script>
 </html>
