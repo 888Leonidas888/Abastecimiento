@@ -10,8 +10,8 @@ router = APIRouter()
 permissions_valid = ['administrador', 'operador']
 
 @router.get("/users", response_model=Union[Dict[str, List[User]], Dict[str, User]])
-def read_users(dni: Optional[str] = None, user: Optional[str] = None):
-    params = {'dni': dni, 'user': user}
+def read_users(dni: Optional[str] = None):
+    params = {'dni': dni}
     if dni:
         database = Database()
         database.connect()
@@ -56,28 +56,45 @@ def create_user(user: UserCreate):
 
 @router.delete('/users/{dni}', response_model=Dict[str, str])
 def delete_user(dni: str):
-    global users
-    user_to_delete = next((user for user in users if user["dni"] == dni), None)
-
-    if not user_to_delete:
+    if not dni:
         raise HTTPException(status_code=404, detail='User not found')
+    params = {'dni': dni}
+    database = Database()
+    database.connect()
+    database.delete('users', **params)
+    database.disconnect()
+    return {'message': f'User identified with {dni} was deleted successfully'}
 
-    users = [user for user in users if user['dni'] != dni]
-    return {'message': 'User delete'}
 
-
-@router.put('/users/{dni}', response_model=User)
+@router.put('/users/{dni}')
 def update_user(dni: str, user_update: UserUpdate):
-    global users
-
-    user_to_update = next((user for user in users if user['dni'] == dni), None)
-
-    if not user_to_update:
+    if not dni:
         raise HTTPException(status_code=404, detail='User not found')
+    params = {'dni': dni}
+    database = Database()
+    database.connect()
+    
+    result = database.read('users', **params)
 
-    if user_update.permission and user_update.permission not in permissions_valid:
+    if not result:
+        database.disconnect()
+        raise HTTPException(status_code=404, detail='User not found')
+    keys_to_remove = ['updated_at', 'created_at', 'password']
+    user_to_update = {key: value for key, value in result[0].items() if key not in keys_to_remove}
+    updated_user = user_update.model_dump(exclude_unset=True)
+    updated_user_permission = updated_user['permission']
+    if updated_user_permission not in permissions_valid:
+        database.disconnect()
         raise HTTPException(status_code=400,
-                            detail=f'Permision {user_update.permission} invalid')
-
-    user_to_update.update(user_update.model_dump(exclude_unset=True))
-    return user_to_update
+                            detail=f'Permision {updated_user_permission} invalid')
+    
+    updated_user['updated_at'] = date.today()
+    database.update('users', user_to_update, **updated_user)
+    # No longer required as a response. Omitted....
+    """result = database.read('users', **params)
+    keys_to_remove = ['updated_at', 'created_at', 'password']
+    structured_data = map(lambda x: {key: value for key, value in x.items() if key not in keys_to_remove}, result)
+    structured_data = list(structured_data)
+    """
+    database.disconnect()
+    return {'message': f'User identified with {dni} was updated successfully'}
