@@ -96,6 +96,21 @@ Abastecimiento/
 |   │
 │   ├── run.py/
 │   └── requirements.txt
-└── Frontend/ (pendiente)
+├── Frontend/
+│   ├── public/
+|   |   ├── css/
+│   │   ├── img/
+│   │   └── js/
+│   ├── views/
+|   |   ├── css/
+│   │   ├── img/
+│   │   └── js/
+│   ├── app.js  
+|   ├── package-lock.json
+|   ├── package.json
+│   ├── run.py/
+│   └── requirements.txt
+
+
 ```
 
