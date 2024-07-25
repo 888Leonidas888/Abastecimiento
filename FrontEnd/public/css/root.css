@@ -7,7 +7,7 @@
     --grey-button: rgb(231, 231, 231);
     --grey-button-hover: rgb(219, 219, 219);
     --box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    --button-hover:rgb(54, 54, 54);
+    --button-hover:rgb(184, 184, 184);
     --scale-button: scale(1.01)
 }
 
@@ -43,6 +43,14 @@ h1 {
     margin: 64px 0px;
 }
 
+h3 {
+    margin-bottom: 20px;
+}
+
+td, th {
+    font-size: 16px;
+}
+
 .back {
     position: absolute;
     top: 0;
@@ -67,7 +75,8 @@ h1 {
     margin-left: 12px;
 }
 
-.iconsRigth #logout {
+#logout,
+#deleteUser {
     color: #ff0000;
 }
 
@@ -82,6 +91,43 @@ h1 {
 .profile span {
     font-size: 40px;
     margin: 0px 12px;
+}
+
+input,
+select {
+    padding: 5px;
+    outline: none;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--grey-border);
+    width: 100%;
+    outline: none;
+}
+
+input:hover,
+select:hover {
+    border: 1px solid var(--color-text);
+}
+
+input:focus,
+select:focus {
+    border: 1px solid var(--color-text);
+}
+
+
+button {
+    padding: 5px;
+    outline: none;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--grey-border);
+    width: 100%;
+    background-color: var(--grey-button);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--button-hover);
 }
 
 
