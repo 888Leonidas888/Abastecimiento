@@ -1,8 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.schemas.endpoint import EndPoint
 from app.api.v1.users import router as router_users
+from app.api.v1.products import router as router_products
+
 
 app = FastAPI()
+
+app.title = 'API para el abastecimiento'
+app.version = 'v0.0.1'
 
 app.add_middleware(
     CORSMiddleware,
@@ -12,9 +18,13 @@ app.add_middleware(
     allow_headers=["*"],  # Permitir todos los encabezados
 )
 
-app.include_router(router_users, prefix='/api/v1', tags=['users'])
 
-
-@app.get('/')
+@app.get('/', response_model=EndPoint, tags=['home'])
 def home():
-    return {'message': 'Hello world!'}
+    return {'end_point': ['http://127.0.0.1:8000/api/v1/users',
+                          'http://127.0.0.1:8000/api/v1/products',
+                          'http://127.0.0.1:8000/api/v1/pallets']}
+
+
+app.include_router(router_users, prefix='/api/v1', tags=['users'])
+app.include_router(router_products, prefix='/api/v1', tags=['products'])
