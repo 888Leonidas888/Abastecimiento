@@ -31,6 +31,10 @@ app.get("/users", (req, res) => {
   res.render("users");
 });
 
+app.get("/supply", (req, res) => {
+  res.render("supply");
+});
+
 app.get("/dataUsers", async (req, res) => {
   try {
     const { dni } = req.query;
