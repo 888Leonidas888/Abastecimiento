@@ -58,6 +58,11 @@ body {
   margin-left: 10px;
 }
 
+.nameProfile,
+.modeProfile {
+  margin: 0px;
+}
+
 /* MODAL EXITO */
 
 #modalExito {
