@@ -3,6 +3,8 @@
     --color-principal: rgb(254, 0, 26);
     --background-body: rgb(247, 247, 247);
     --color-white: white;
+    --color-red: rgb(255, 0, 25);
+    --color-green: rgb(65, 202, 2);
     --grey-border: grey;
     --grey-button: rgb(231, 231, 231);
     --grey-button-hover: rgb(219, 219, 219);
@@ -129,5 +131,12 @@ button {
 button:hover {
     background-color: var(--button-hover);
 }
+
+.nameProfile,
+.modeProfile {
+  margin: 0px;
+}
+
+
 
 
