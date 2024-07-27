@@ -1,32 +1,34 @@
-const express = require('express');
-const axios = require('axios');
+const express = require("express");
+const axios = require("axios");
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+
 // Configurar EJS como el motor de plantillas
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 // Configurar la carpeta de vistas
-app.set('views', __dirname + '/views');
+app.set("views", __dirname + "/views");
 
 // Servir archivos estáticos desde la carpeta 'public'
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 // Ruta principal
-app.get('/', (req, res) => {
-  res.render('index');
+app.get("/", (req, res) => {
+  res.render("index");
 });
 
-app.get('/menu', (req, res) => {
-  res.render('menu');
+app.get("/menu", (req, res) => {
+  res.render("menu");
 });
 
-app.get('/products', (req, res) => {
-  res.render('products');
+app.get("/products", (req, res) => {
+  res.render("products");
 });
 
-app.get('/users', (req, res) => {
-  res.render('users');
+app.get("/users", (req, res) => {
+  res.render("users");
 });
 
 app.get("/dataUsers", async (req, res) => {
@@ -34,7 +36,9 @@ app.get("/dataUsers", async (req, res) => {
     const { dni } = req.query;
     const response = await axios.get("http://localhost:8000/api/v1/users", {
       params: { dni },
-      headers: { "Content-Type": "application/json" }
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     res.json(response.data);
   } catch (error) {
@@ -43,7 +47,57 @@ app.get("/dataUsers", async (req, res) => {
   }
 });
 
+app.post("/addUser", async (req, res) => {
+  const { dni, user, name_user, last_name_user, permission, password } =
+    req.body;
+  try {
+    const response = await axios.post(
+      "http://localhost:8000/api/v1/users",
+      {
+        dni: dni,
+        user: user,
+        name_user: name_user,
+        last_name_user: last_name_user,
+        permission: permission,
+        password: password,
+      },
+      {
+        header: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error al llamar a la API externa:", error.message);
+    res.status(500).send("Error en la solicitud a la API externa");
+  }
+});
 
+app.put("/updateUser/:dni", async (req, res) => {
+  const { dni } = req.params;
+  const { password, name_user, last_name_user, permission } = req.body;
+  try {
+    const response = await axios.put(
+      `http://localhost:8000/api/v1/users/${dni}`,
+      {
+        password: password,
+        name_user: name_user,
+        last_name_user: last_name_user,
+        permission: permission,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error al actualizar el usuario:", error.message);
+    res.status(500).send("Error en la solicitud a la API externa");
+  }
+});
 // Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);

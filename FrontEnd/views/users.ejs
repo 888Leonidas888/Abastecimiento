@@ -32,12 +32,14 @@
             <th>Editar</th>
             <th>DNI</th>
             <th>Usuario</th>
-            <th>Contraseña</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Permisos</th>
             <th>Eliminar</th>
           </tr>
         </thead>
         <tbody id="dataUsuarios">
-          <tr>
+          <!-- <tr>
             <td><span id="editUser" class="material-symbols-rounded">edit</span></td>
             <td>73039293</td>
             <td>echanjan</td>
@@ -47,7 +49,7 @@
                 >delete</span
               >
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
@@ -73,17 +75,18 @@
       </div>
       <h3>Crear usuario</h3>
       <form action="" id="formAddUser">
-        <input type="text" placeholder="DNI" />
-        <input type="text" placeholder="Nombre de usuario" />
-        <input type="text" placeholder="Contraseña" />
-        <input type="text" placeholder="Nombres" />
-        <input type="text" placeholder="Apellidos" />
+        <input id="dni" type="text" placeholder="DNI" value=""/>
+        <input id="nombreUsuario" type="text" placeholder="Nombre de usuario" value=""/>
+        <input id="contraseña" type="text" placeholder="Contraseña" value=""/>
+        <input id="nombre" type="text" placeholder="Nombres" value=""/>
+        <input id="apellido" type="text" placeholder="Apellidos" value=""/>
         <!-- <input type="text" placeholder="Permiso"> -->
         <select name="permission" id="permissionUAdd">
-          <option value="admin">Administrador</option>
+          <option value="default" selected disabled>Elige permiso</option>
+          <option value="administrador">Administrador</option>
           <option value="operador">Operador</option>
         </select>
-        <button id="userCreate" type="submit">Crear</button>
+        <button id="userCreate">Crear</button>
       </form>
     </div>
     <!-- MODAL ACTUALIZAR USUARIO -->
@@ -93,14 +96,13 @@
       </div>
       <h3>Actualizar usuario</h3>
       <form action="" id="formUpdateUser">
-        <input type="text" placeholder="Contraseña" />
-        <input type="text" placeholder="Nombres" />
-        <input type="text" placeholder="Apellidos" />
-        <!-- <input type="text" placeholder="Permiso"> -->
         <select name="permission" id="permissionUUpdate">
           <option value="admin">Administrador</option>
           <option value="operador">Operador</option>
         </select>
+        <input id="updateNombres" type="text" placeholder="Nombres" />
+        <input id="updateApellidos" type="text" placeholder="Apellidos" />
+        <input id="updateConreseña" type="text" placeholder="Contraseña" /> 
         <button id="userUpdate" type="submit">Actualizar</button>
       </form>
     </div>
