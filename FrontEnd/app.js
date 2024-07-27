@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require('axios');
 const app = express();
 const port = 3000;
 
@@ -27,6 +28,21 @@ app.get('/products', (req, res) => {
 app.get('/users', (req, res) => {
   res.render('users');
 });
+
+app.get("/dataUsers", async (req, res) => {
+  try {
+    const { dni } = req.query;
+    const response = await axios.get("http://localhost:8000/api/v1/users", {
+      params: { dni },
+      headers: { "Content-Type": "application/json" }
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error al obtener datos de usuarios:", error.message);
+    res.status(500).json({ error: "Error al obtener los datos" });
+  }
+});
+
 
 // Iniciar el servidor
 app.listen(port, () => {
