@@ -28,6 +28,10 @@ app.get('/users', (req, res) => {
   res.render('users');
 });
 
+app.get('/supply', (req, res) => {
+  res.render('supply');
+});
+
 // Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);

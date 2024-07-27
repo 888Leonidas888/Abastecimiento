@@ -89,9 +89,18 @@ td, th {
 }
 
 .profile span {
-    font-size: 40px;
+    font-size: 46px;
     margin: 0px 12px;
 }
+
+#nameUser {
+    margin: 0px;
+}
+
+#modeUser {
+    margin: 0px;
+}
+
 
 input,
 select {
@@ -129,5 +138,4 @@ button {
 button:hover {
     background-color: var(--button-hover);
 }
-
 
