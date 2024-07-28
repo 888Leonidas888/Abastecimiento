@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Literal
 from datetime import date
 
 
@@ -16,6 +16,7 @@ class Product(BaseModel):
 class ProductList(BaseModel):
     products: List[Product]
 
+
 class CreatedProducts(Product):
     id: str
     status: str
@@ -24,5 +25,24 @@ class CreatedProducts(Product):
     update_date: date
 
 
-# class UpdateProducts(BaseModel):
-#     status: str
+class UpdateProduct(BaseModel):
+    status: Literal['error', 'completado']
+
+
+class Pallet(BaseModel):
+    id: str
+    batch_id: str
+    sku: int
+    description: str
+    origin: str
+    destination: str
+    status: str
+    due_date: date
+    freshness: str
+    qr_pallet: str
+    created_at: date
+    updated_at: date
+
+
+class PalletsList(BaseModel):
+    pallets: List[Pallet]

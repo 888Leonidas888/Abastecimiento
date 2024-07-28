@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.schemas.endpoint import EndPoint
 from app.api.v1.users import router as router_users
 from app.api.v1.products import router as router_products
+from app.api.v1.pallets import router as router_pallets
 
 
 app = FastAPI()
@@ -28,3 +29,4 @@ def home():
 
 app.include_router(router_users, prefix='/api/v1', tags=['users'])
 app.include_router(router_products, prefix='/api/v1', tags=['products'])
+app.include_router(router_pallets, prefix='/api/v1', tags=['pallets'])

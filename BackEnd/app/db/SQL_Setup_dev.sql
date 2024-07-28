@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS products(
     status VARCHAR(255) NOT NULL,
     due_date DATE NOT NULL,
     freshness VARCHAR(255) NOT NULL,
-    qr_pallet VARCHAR(255) NOT NULL,
+    qr_pallet VARCHAR(255) NOT NULL UNIQUE,
     created_at DATE,
     updated_at DATE,
     FOREIGN KEY (batch_id) REFERENCES batches(id)

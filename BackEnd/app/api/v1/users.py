@@ -9,6 +9,7 @@ router = APIRouter()
 
 permissions_valid = ['administrador', 'operador']
 
+
 @router.get("/users", response_model=Union[Dict[str, List[User]], Dict[str, User]])
 def read_users(dni: Optional[str] = None):
     params = {'dni': dni}
@@ -22,6 +23,7 @@ def read_users(dni: Optional[str] = None):
         database.disconnect()
 
         if not result:
+            database.disconnect()
             raise HTTPException(status_code=404, detail='User not found')
         return {'user': structured_data}
     else:
@@ -73,21 +75,22 @@ def update_user(dni: str, user_update: UserUpdate):
     params = {'dni': dni}
     database = Database()
     database.connect()
-    
+
     result = database.read('users', **params)
 
     if not result:
         database.disconnect()
         raise HTTPException(status_code=404, detail='User not found')
     keys_to_remove = ['updated_at', 'created_at', 'password']
-    user_to_update = {key: value for key, value in result[0].items() if key not in keys_to_remove}
+    user_to_update = {key: value for key,
+                      value in result[0].items() if key not in keys_to_remove}
     updated_user = user_update.model_dump(exclude_unset=True)
     updated_user_permission = updated_user['permission']
     if updated_user_permission not in permissions_valid:
         database.disconnect()
         raise HTTPException(status_code=400,
                             detail=f'Permision {updated_user_permission} invalid')
-    
+
     updated_user['updated_at'] = date.today()
     database.update('users', user_to_update, **updated_user)
     # No longer required as a response. Omitted....
