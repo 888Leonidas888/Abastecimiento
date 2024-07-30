@@ -3,4 +3,4 @@ from pydantic import BaseModel
 
 class Batch(BaseModel):
     batch: str
-    total_products: int
+    total_products: str
