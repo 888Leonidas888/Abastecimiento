@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.schemas.endpoint import EndPoint
 from fastapi.security import OAuth2PasswordRequestForm
 from datetime import timedelta
-from app.token_manager import *
+from app.oauth.token_manager import *
 from app.api.v1.users import router as router_users
 from app.api.v1.products import router as router_products
 from app.api.v1.pallets import router as router_pallets

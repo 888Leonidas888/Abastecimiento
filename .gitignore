@@ -3,13 +3,14 @@
 
 #archivo basura
 
-#frontend
+#backend
 BackEnd/app/__pycache__/
 BackEnd/app/api/v1/__pycache__/
 BackEnd/app/schemas/__pycache__/
 BackEnd/app/utils/__pycache__/
 BackEnd/app/db/__pycache__/
 BackEnd/tests/
+BackEnd/app/oauth/__pycache__/
 
 # node modules
 node_modules/
