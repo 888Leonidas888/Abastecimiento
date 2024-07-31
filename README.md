@@ -1,5 +1,7 @@
 # Abastecimiento de productos para almacenes
-![Static Badge](https://img.shields.io/badge/Python-3.12-eeeeee?logo=python&logoColor=ffff99) ![Static Badge](https://img.shields.io/badge/FastApi-0.111-74C69B?logo=fastapi&logoColor=74C69B)
+![Static Badge](https://img.shields.io/badge/Python-3.12-eeeeee?logo=python&logoColor=ffff99) ![Static Badge](https://img.shields.io/badge/FastApi-0.111-74C69B?logo=fastapi&logoColor=74C69B) ![Static Badge]( https://img.shields.io/badge/npm-10.5.2-red?logo=npm) ![Static Badge]( https://img.shields.io/badge/node-20.13.1-blue?logo=nodedotjs) ![Static Badge]( https://img.shields.io/badge/MySQL-8.0.30-blue?logo=mysql&logoColor=white)
+
+
 
 ![Montacargas eléctrico abasteciento](https://static4.depositphotos.com/1000291/324/i/950/depositphotos_3247657-stock-photo-distribution-in-warehouse-with-forklift.jpg)
 
@@ -53,7 +55,23 @@ python run.py
 
 ### Frontend
 
-En desarrollo
+#### Instalar dependencias
+
+Siga los siguientes comandos:
+
+```js
+cd FrontEnd
+npm install
+```
+
+#### Ejecutar el Frontend
+
+Ahora ejecute:
+
+```js
+npx nodemon app.js
+```
+
 
 ## Endpoint y documentación
 
@@ -68,14 +86,19 @@ Acceda a los endpoint.
 + `DELETE /api/v1/users/{dni}`: Eliminar un usuario por su DNI.
 
 ### Productos
+
++ `POST /api/v1/products`: Crear una lista de productos.
++ `DELETE /api/v1/products`: Eliminar una lista de productos.
+
 ### Pallets
 
-> [!NOTE]
-> Solo el primer endpoint esta activo, los otros 2 estan en construcción.
++ `GET /api/v1/pallets`: Obtener una lista de productos.
++ `GET /api/v1/pallets/{qr_pallet}`: Obtener un producto.
++ `PUT /api/v1/pallets/{qr_pallet}`: Obtener un producto.
 
 Visite la documentación de la API y aprenda como interactuar con ella en la siguiente ruta:
 
-+ [Documentación de la API](http://localhost:8000/docs)
++ [Documentación de la API de abastecimiento](http://localhost:8000/docs)
 
 ## Estructura del Proyecto
 
@@ -89,28 +112,25 @@ Abastecimiento/
 │   │   |       ├── products.py
 │   │   |       └── pallets.py
 |   |   |
+│   │   ├── __init__.py
 │   │   ├── main.py
-│   │   ├── schemas/
 │   │   ├── db/
+│   │   ├── oauth/
+│   │   ├── schemas/
 │   │   └── utils/
 |   │
 │   ├── run.py/
 │   └── requirements.txt
-├── Frontend/
-│   ├── public/
-|   |   ├── css/
-│   │   ├── img/
-│   │   └── js/
-│   ├── views/
-|   |   ├── css/
-│   │   ├── img/
-│   │   └── js/
-│   ├── app.js  
-|   ├── package-lock.json
-|   ├── package.json
-│   ├── run.py/
-│   └── requirements.txt
-
+└── Frontend/
+    ├── public/
+    |   ├── css/
+    │   ├── img/
+    │   └── js/
+    ├── views/
+    |   ├── css/
+    │   ├── img/
+    │   └── js/
+    ├── app.js  
+    └── package.json
 
 ```
-
