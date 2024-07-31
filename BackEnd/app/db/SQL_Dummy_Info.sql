@@ -45,17 +45,10 @@ INSERT INTO users (id, dni, user, password, name_user, last_name_user, permissio
 ('k0l1m2n', '98765432', 'dsmith', 'A1s2d3f4g5H6', 'David', 'Smith', 'usuario', '2024-07-03', '2024-07-12');
 
 
-INSERT INTO productivity (id_user, id_product, created_at) VALUES 
-('794a373', '362c547', '2024-07-09'), 
-('d5f6abc', '0288b7f', '2024-06-30'), 
-('794a373', '84d49c1', '2024-06-26'), 
-('e4c1def', '88da533', '2024-07-04'), 
-('d5f6abc', 'c25acc2', '2024-07-05'), 
-('e4c1def', 'b6ea56e', '2024-06-28'), 
-('d5f6abc', '4d3c0c8', '2024-07-14'), 
-('e4c1def', 'd05b364', '2024-07-17'), 
-('g6h7ijk', 'c00c04d', '2024-06-23'), 
-('e4c1def', 'a867fa4', '2024-07-15'), 
-('g6h7ijk', '05d5d2d', '2024-06-28'), 
-('e4c1def', '41ae07f', '2024-07-14'), 
-('k0l1m2n', '4460178', '2024-06-28');
+INSERT INTO productivity (id_user, qr_pallet, created_at) VALUES 
+('794a373', '728WHSBQ9I161UOPXOPHT3BW7', '2024-07-09'), 
+('d5f6abc', 'OWZ6SEFYWQQIHTAHQQKDI4WLF', '2024-06-30'), 
+('794a373', '28ZJMAJ8E96D8R94RX8QH01F7', '2024-06-26'), 
+('e4c1def', '7HLX22A90R97WAYEXFSQ1N7V8', '2024-07-04'), 
+('d5f6abc', 'IQAM2ODILV9Q6H2I56DKCLMGR', '2024-07-05'), 
+('e4c1def', 'CHVXAP49M84FULHYB2351HVBW', '2024-06-28'); 

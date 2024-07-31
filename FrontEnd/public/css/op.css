@@ -1,0 +1,98 @@
+@import url(/css/root.css);
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.formSupply {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.infoProducts {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.infoProducts h4 {
+  width: 150px;
+}
+
+.infoProducts input {
+  width: 150px;
+  margin-bottom: 0px;
+}
+
+.buttonSupply {
+  display: flex;
+  margin: 10px 0px;
+}
+
+.error,
+.check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--grey-border);
+  padding: 5px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.error {
+  border: 2px solid var(--color-red);
+}
+
+.error span {
+  color: var(--color-red);
+}
+
+.check {
+    border: 2px solid var(--color-green);
+    margin-left: 20px;
+  }
+  
+  .check span {
+    color: var(--color-green);
+  }
+
+.error:hover,
+.check:hover {
+  transform: var(--scale-button);
+  box-shadow: var(--box-shadow);
+}
+
+.boxProductSupply span {
+  font-size: 28px;
+  margin-left: 10px;
+}
+
+#modalExito {
+  display: none; /*cambiar block*/
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  background-color: var(--color-white);
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+#overlay {
+  display: none; /*cambiar block*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.733);
+  backdrop-filter: blur(5px);
+}

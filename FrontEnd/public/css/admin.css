@@ -58,6 +58,11 @@ body {
   margin-left: 10px;
 }
 
+.nameProfile,
+.modeProfile {
+  margin: 0px;
+}
+
 /* MODAL EXITO */
 
 #modalExito {
@@ -108,6 +113,7 @@ body {
   height: 60vh; /* Altura fija de la tabla */
   display: flex;
   flex-direction: column;
+  background-color: var(--grey-border);
 }
 
 .tableUsers thead {
@@ -115,7 +121,7 @@ body {
   color: #ffffff;
   font-weight: bold;
   display: table;
-  width: 100%; /* Ajuste para el scroll vertical */
+  width: calc(100% - 20px) ; /* Ajuste para el scroll vertical */
   table-layout: fixed; /* Para que las columnas tengan el mismo ancho */
 }
 
@@ -128,7 +134,7 @@ body {
 .tableUsers tbody {
   display: block;
   overflow: auto;
-  height: calc(100% - 45px); /* Altura de tbody restando la altura de thead */
+  height: 100%; /* Altura de tbody restando la altura de thead */
 }
 
 .tableUsers tbody tr {
@@ -140,6 +146,10 @@ body {
 
 .tableUsers tbody tr:nth-of-type(even) {
   background-color: #f3f3f3;
+}
+
+.tableUsers tbody tr:nth-of-type(odd) {
+  background-color: #ffffff;
 }
 
 .tableUsers tbody tr:last-of-type {

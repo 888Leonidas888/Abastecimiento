@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS products(
     status VARCHAR(255) NOT NULL,
     due_date DATE NOT NULL,
     freshness VARCHAR(255) NOT NULL,
-    qr_pallet VARCHAR(255) NOT NULL,
+    qr_pallet VARCHAR(255) NOT NULL UNIQUE,
     created_at DATE,
     updated_at DATE,
     FOREIGN KEY (batch_id) REFERENCES batches(id)
@@ -42,10 +42,10 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS productivity (
-    id_user VARCHAR(50),
-    id_product VARCHAR(50),
+    id_user VARCHAR(50) NOT NULL,
+    qr_pallet VARCHAR(255) NOT NULL,
     created_at DATE,
     FOREIGN KEY (id_user) REFERENCES users(id),
-    FOREIGN KEY (id_product) REFERENCES products(id)
+    FOREIGN KEY (qr_pallet) REFERENCES products(qr_pallet)
 );
 
