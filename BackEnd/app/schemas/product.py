@@ -27,6 +27,7 @@ class CreatedProducts(Product):
 
 class UpdateProduct(BaseModel):
     status: Literal['error', 'completado']
+    id_user: str
 
 
 class Pallet(BaseModel):

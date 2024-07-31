@@ -42,10 +42,10 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS productivity (
-    id_user VARCHAR(50),
-    id_product VARCHAR(50),
+    id_user VARCHAR(50) NOT NULL,
+    qr_pallet VARCHAR(255) NOT NULL,
     created_at DATE,
     FOREIGN KEY (id_user) REFERENCES users(id),
-    FOREIGN KEY (id_product) REFERENCES products(id)
+    FOREIGN KEY (qr_pallet) REFERENCES products(qr_pallet)
 );
 
