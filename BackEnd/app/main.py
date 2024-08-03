@@ -23,10 +23,15 @@ app.add_middleware(
 
 
 @app.post('/token')
-def login(form_data: OAuth2PasswordRequestForm = Depends()):
+async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     user = auth_user('users', form_data.username, form_data.password)
     # Check if user is correct
-    print(user)
+    if not user:
+        raise HTTPException(
+            status_code=401,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
     access_token_expire = timedelta(hours=8)
     access_token_JWT = create_token({"sub": user['user']}, access_token_expire)
     # Data from form
@@ -48,3 +53,5 @@ app.include_router(router_users, prefix='/api/v1',
                    tags=['users'], dependencies=[Depends(get_admin_user)])
 app.include_router(router_products, prefix='/api/v1', tags=['products'])
 app.include_router(router_pallets, prefix='/api/v1', tags=['pallets'])
+
+# 

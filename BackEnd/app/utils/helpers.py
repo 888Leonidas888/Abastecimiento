@@ -39,6 +39,5 @@ def create_query_for_update(table_name, filter_params, **update_params) -> tuple
     """Generates a update SQL command and its values."""
     update_declaration = ', '.join([f"{key}=%s" for key in update_params])
     filter_declaration = ' AND '.join([f"{key}=%s" for key in filter_params])
-    query = f"UPDATE {table_name} SET {
-        update_declaration} WHERE {filter_declaration}"
+    query = f"UPDATE {table_name} SET {update_declaration} WHERE {filter_declaration}"
     return query, tuple(update_params.values()) + tuple(filter_params.values())

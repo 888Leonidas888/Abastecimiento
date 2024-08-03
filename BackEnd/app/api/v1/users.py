@@ -4,6 +4,7 @@ from typing import List, Dict, Optional, Union
 from app.utils.helpers import generate_id
 from app.db.DB_Manager import Database
 from datetime import date
+from app.oauth.token_manager import hash_password
 
 router = APIRouter()
 
@@ -39,18 +40,27 @@ def read_users(dni: Optional[str] = None):
 
 @router.post('/users', response_model=User)
 def create_user(user: UserCreate):
-
+    
     new_id = generate_id()
     new_user = user.model_dump()
     permission = new_user['permission']
     new_user['id'] = new_id
     new_user['created_at'] = date.today()
     new_user['updated_at'] = date.today()
+    hashed_password = hash_password(new_user['password'])
+    new_user['password'] = hashed_password
     if permission not in permissions_valid:
         raise HTTPException(status_code=400,
-                            detail=f'Permision {permission} invalid')
+                                detail=f'Permision {permission} invalid')
     database = Database()
     database.connect()
+    params = {'user': new_user['user']}
+    result = database.read('users', **params)
+    if result:
+        database.disconnect()
+        raise HTTPException(status_code=400,
+                                detail="User already exists")
+        
     database.create('users', **new_user)
     database.disconnect()
     return new_user
