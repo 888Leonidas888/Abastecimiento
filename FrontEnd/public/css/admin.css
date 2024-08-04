@@ -35,7 +35,7 @@ body {
   align-items: center;
 }
 
-.inport,
+.import,
 .send {
   display: flex;
   align-items: center;
@@ -47,7 +47,7 @@ body {
   margin-bottom: 10px;
 }
 
-.inport:hover,
+.import:hover,
 .send:hover {
   transform: var(--scale-button);
   box-shadow: var(--box-shadow);
@@ -121,7 +121,7 @@ body {
   color: #ffffff;
   font-weight: bold;
   display: table;
-  width: calc(100% - 20px) ; /* Ajuste para el scroll vertical */
+  width: calc(100% - 20px); /* Ajuste para el scroll vertical */
   table-layout: fixed; /* Para que las columnas tengan el mismo ancho */
 }
 

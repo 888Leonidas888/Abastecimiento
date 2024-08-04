@@ -29,8 +29,8 @@
         <input type="file" id="file" name="file" />
         <br />
       </div>
-      <div class="inport">
-        <h4>Importar</h4>
+      <div id="send-products" class="import">
+        <h4>Enviar</h4>
         <span class="material-symbols-rounded"> publish </span>
       </div>
       <!-- <div class="send">
@@ -50,9 +50,12 @@
       <div class="close">
         <span class="material-symbols-rounded"> close </span>
       </div>
-      <h3>Exito!</h3>
-      <h4>Se cargaron xx de x</h4>
+      <h3></h3>
+      <h4></h4>
     </div>
-    <div class="overlay"></div>
+    <div id="overlay" class="overlay"></div>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/upload.js"></script>
   </body>
 </html>
