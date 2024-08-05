@@ -3,6 +3,8 @@
     --color-principal: rgb(254, 0, 26);
     --background-body: rgb(247, 247, 247);
     --color-white: white;
+    --color-red: rgb(255, 0, 25);
+    --color-green: rgb(65, 202, 2);
     --grey-border: grey;
     --grey-button: rgb(231, 231, 231);
     --grey-button-hover: rgb(219, 219, 219);
@@ -73,34 +75,28 @@ td, th {
 .iconsRigth span {
     font-size: 32px;
     margin-left: 12px;
+    cursor: pointer;
 }
 
 #logout,
-#deleteUser {
+.deleteUser {
     color: #ff0000;
 }
 
 .profile {
     display: flex;
+    align-items: center;
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    margin: 10px;
+    padding: 10px;
+    background-color: var(--background-body);
 }
 
 .profile span {
-    font-size: 46px;
-    margin: 0px 12px;
+    font-size: 48px;
+    margin: 0px 12px 0px 0px;
 }
-
-#nameUser {
-    margin: 0px;
-}
-
-#modeUser {
-    margin: 0px;
-}
-
 
 input,
 select {
@@ -138,4 +134,11 @@ button {
 button:hover {
     background-color: var(--button-hover);
 }
+
+.nameProfile,
+.modeProfile {
+  margin: 0px;
+}
+
+
 

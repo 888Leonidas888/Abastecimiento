@@ -16,7 +16,8 @@ body {
 
 .infoProducts {
   display: flex;
-  margin-bottom: 5px;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .infoProducts h4 {
