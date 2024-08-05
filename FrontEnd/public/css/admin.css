@@ -2,6 +2,23 @@
 
 /* CARGA DE PRODUCTOS */
 
+/* BARSUCESS */
+
+.barSuccess {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 10px;
+  background-color: transparent; /* Empieza transparente */
+  opacity: 0;
+  transition: background-color 0.3s, opacity 0.3s; /* Transición para ambos */
+}
+
+.activate {
+  background-color: var(--color-green); /* Cambia a verde */
+  opacity: 1; /* Cambia a opaco */
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -110,10 +127,11 @@ body {
   box-shadow: var(--box-shadow);
   border-radius: 8px;
   overflow: hidden;
-  height: 60vh; /* Altura fija de la tabla */
+  height: 60vh;
   display: flex;
   flex-direction: column;
   background-color: var(--grey-border);
+  margin: 0px 16px 0px 16px;
 }
 
 .tableUsers thead {
@@ -121,7 +139,7 @@ body {
   color: #ffffff;
   font-weight: bold;
   display: table;
-  width: calc(100% - 20px); /* Ajuste para el scroll vertical */
+  width: calc(100% - 20px);
   table-layout: fixed; /* Para que las columnas tengan el mismo ancho */
 }
 
@@ -129,6 +147,8 @@ body {
 .tableUsers td {
   padding: 12px 15px;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .tableUsers tbody {
@@ -164,7 +184,8 @@ body {
 /* MODAL CREAR USUARIO */
 
 #modalAddUser,
-#modalUpdateUser {
+#modalUpdateUser,
+#modalDeleteUser {
   display: none; /*cambiar block*/
   position: fixed;
   top: 50%;
@@ -176,7 +197,7 @@ body {
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  width: 20%;
+  width: 250px;
 }
 
 #formAddUser,
@@ -200,4 +221,33 @@ body {
 
 .close span:hover {
   color: var(--button-hover);
+}
+
+.boxYesDelete h3 {
+  margin: 0px;
+}
+
+.boxNoDelete,
+.boxYesDelete {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 450px) {
+  .tableUsers {
+    width: auto;
+    border-collapse: separate;
+    font-size: 18px;
+    box-shadow: var(--box-shadow);
+    border-radius: 8px;
+    overflow: hidden;
+    height: 60vh; /* Altura fija de la tabla */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--grey-border);
+    margin: 0px 16px 0px 16px;
+  }
+
+  .disguise {
+    display: none;
+  }
 }
