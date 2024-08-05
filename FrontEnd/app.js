@@ -103,6 +103,24 @@ app.put("/updateUser/:dni", async (req, res) => {
   }
 });
 
+app.delete("/updateUser/:dni", async (req, res) => {
+  const { dni } = req.params;
+  try {
+    const response = await axios.delete(
+      `http://localhost:8000/api/v1/users/${dni}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error al actualizar el usuario:", error.message);
+    res.status(500).send("Error en la solicitud a la API externa");
+  }
+});
+
 // Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
