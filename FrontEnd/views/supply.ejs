@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Productos</title>
-    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="stylesheet" href="/css/op.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
       rel="stylesheet"
@@ -20,29 +20,58 @@
         <span class="material-symbols-rounded"> arrow_back </span></a
       >
     </div>
-    <!-- <div class="iconsRigth">
-      <span class="material-symbols-rounded" id="logout"> logout </span>
-    </div> -->
     <h1>Abastecimiento</h1>
-    <div class="boxProductAdmin">
-      <div class="formProducts">
-        <input type="file" id="file" name="file" />
-        <br />
+    <div class="boxPallets">
+      <div id="get-pending-product">
+        <div class="formSupply">
+          <div class="inputQR">
+            <input id="qr-pallet-verify" type="hidden" />
+          </div>
+          <div class="inputDestination">
+            <input id="pallet-destination" type="hidden" value="" />
+          </div>
+          <div class="infoProducts">
+            <h4>Ubicación</h4>
+            <p>Ubicación</p>
+          </div>
+          <div class="infoProducts">
+            <h4>Sku</h4>
+            <p>Sku</p>
+          </div>
+          <div class="infoProducts">
+            <h4>Descripción</h4>
+            <p>Descripción</p>
+          </div>
+          <div class="infoProducts">
+            <h4>Vencimiento</h4>
+            <p>Vencimiento</p>
+          </div>
+          <div class="infoProducts">
+            <h4>Estado</h4>
+            <p>Estado</p>
+          </div>
+          <div class="infoProducts">
+            <h4>Codigo Pallet</h4>
+            <input type="text" id="qr-pallet" />
+          </div>
+        </div>
+        <div class="buttonSupply">
+          <div class="error">
+            <h4>Error</h4>
+            <span class="material-symbols-rounded"> error </span>
+          </div>
+          <div class="check" id="ok">
+            <h4>Listo</h4>
+            <span class="material-symbols-rounded"> check_circle </span>
+          </div>
+        </div>
       </div>
-      <div class="inport">
-        <h4>Importar</h4>
-        <span class="material-symbols-rounded"> publish </span>
-      </div>
-      <!-- <div class="send">
-        <h4>Enviar</h4>
-        <span class="material-symbols-outlined"> manage_accounts </span>
-      </div> -->
     </div>
     <div class="profile">
       <span class="material-symbols-rounded"> account_circle </span>
       <div>
-        <h3 id="nameUser">Nombre de usuario</h3>
-        <p id="modeUser">Modo Administrador</p>
+        <h3 class="nameProfile">Nombre de usuario</h3>
+        <p class="modeProfile">Modo Administrador</p>
       </div>
     </div>
     <!-- MODAL EXITO -->
@@ -50,9 +79,10 @@
       <div class="close">
         <span class="material-symbols-rounded"> close </span>
       </div>
-      <h3>Exito!</h3>
-      <h4>Se cargaron xx de x</h4>
+      <h3>Pallet no solictado</h3>
+      <h4>Este pallet no ha sido solicitado.</h4>
     </div>
-    <div class="overlay"></div>
+    <div class="overlay" id="overlay"></div>
+    <script src="js/pallets.js"></script>
   </body>
 </html>

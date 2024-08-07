@@ -1,0 +1,57 @@
+/* pallets.css */
+
+body {
+    font-family: Arial, sans-serif; 
+    background-color: #f0f0f0; 
+    text-align: center;
+}
+
+.container {
+    max-width: 400px; 
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;  
+
+}
+
+.error {
+    background-color: #f44336; /* Rojo */
+}
+
+.listo {
+    background-color: #4CAF50; /* Verde */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}

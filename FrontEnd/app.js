@@ -35,6 +35,18 @@ app.get('/supply', (req, res) => {
   res.render('supply');
 });
 
+app.get('/pallets', (req, res) => {
+  res.render('pallets');
+});
+
+app.get('/yespallet', (req, res) => {
+  res.render('yespallet');
+});
+
+app.get('/nopallet', (req, res) => {
+  res.render('nopallet');
+});
+
 app.get("/dataUsers", async (req, res) => {
   try {
     const { dni } = req.query;
@@ -90,6 +102,24 @@ app.put("/updateUser/:dni", async (req, res) => {
         last_name_user: last_name_user,
         permission: permission,
       },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error al actualizar el usuario:", error.message);
+    res.status(500).send("Error en la solicitud a la API externa");
+  }
+});
+
+app.delete("/updateUser/:dni", async (req, res) => {
+  const { dni } = req.params;
+  try {
+    const response = await axios.delete(
+      `http://localhost:8000/api/v1/users/${dni}`,
       {
         headers: {
           "Content-Type": "application/json",
