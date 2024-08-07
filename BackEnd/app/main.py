@@ -7,6 +7,7 @@ from app.oauth.token_manager import *
 from app.api.v1.users import router as router_users
 from app.api.v1.products import router as router_products
 from app.api.v1.pallets import router as router_pallets
+from app.schemas.tokenResponse import TokenResponse
 
 app = FastAPI()
 
@@ -22,7 +23,7 @@ app.add_middleware(
 )
 
 
-@app.post('/token')
+@app.post('/token', response_model=TokenResponse)
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     user = auth_user('users', form_data.username, form_data.password)
     # Check if user is correct
@@ -34,11 +35,15 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
         )
     access_token_expire = timedelta(hours=8)
     access_token_JWT = create_token({"sub": user['user']}, access_token_expire)
-    # Data from form
+    # Data from form. TESTING PURPORSES
     print(form_data.username, form_data.password)
+    # RETURN JSON WITH THE ACCESS TOKEN
     return {
         "access_token": access_token_JWT,
-        "token_time": "bearer"
+        "token_time": "bearer",
+        "permission": user['permission'],
+        "user": user['user'],
+        "id_user": user['id']
     }
 
 

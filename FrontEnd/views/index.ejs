@@ -66,12 +66,20 @@
         if (!response.ok) {
             throw new Error('Login failed');
         }
-
+        // accesing to the response json and taking the token from it to store locally. USAGE IS NOT READY YET FOR UPCOMING ENDPOINTS
         const data = await response.json();
         const token = data.access_token;
+        const user = data.user;
+        const permission = data.permission;
+        const id_user = data.id_user;
 
+
+        // SAVING IT
+        sessionStorage.setItem('token', token);
+        sessionStorage.setItem('user', user);
+        sessionStorage.setItem('permission', permission);
+        sessionStorage.setItem('id_user', id_user);
         
-        localStorage.setItem('token', token);
 
         
         window.location.href = '/menu';
