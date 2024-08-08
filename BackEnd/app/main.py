@@ -56,7 +56,5 @@ def home():
 
 app.include_router(router_users, prefix='/api/v1',
                    tags=['users'], dependencies=[Depends(get_admin_user)])
-app.include_router(router_products, prefix='/api/v1', tags=['products'])
-app.include_router(router_pallets, prefix='/api/v1', tags=['pallets'])
-
-# 
+app.include_router(router_products, prefix='/api/v1', tags=['products'], dependencies=[Depends(get_admin_user)])
+app.include_router(router_pallets, prefix='/api/v1', tags=['pallets'], dependencies=[Depends(get_for_all_user)])
