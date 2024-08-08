@@ -60,6 +60,7 @@ function closeModal(modal, overlay) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  showUserInfo();
   const ok = document.getElementById('ok');
   const hiddenModal = document.querySelector('.close');
   const modal = document.getElementById('modalExito');
@@ -89,3 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+function showUserInfo() {
+  const nameProfile = document.querySelector('.nameProfile')
+  const modeProfile = document.querySelector('.modeProfile')
+  const userName = sessionStorage.getItem('user')
+  const permission = sessionStorage.getItem('permission')
+
+  nameProfile.innerHTML = userName
+  modeProfile.innerHTML = permission
+  
+}

@@ -26,7 +26,20 @@ function renderViewAdministrator(boxOptions) {
     `;
 }
 
+function showUserInfo() {
+  const nameProfile = document.querySelector('.nameProfile')
+  const modeProfile = document.querySelector('.modeProfile')
+  const userName = sessionStorage.getItem('user')
+  const permission = sessionStorage.getItem('permission')
+
+  nameProfile.innerHTML = userName
+  modeProfile.innerHTML = permission
+  
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
+  showUserInfo();
   const boxOptions = document.querySelector('.boxOptions');
   const permission = sessionStorage.getItem('permission');
 

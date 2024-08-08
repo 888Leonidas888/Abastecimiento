@@ -109,6 +109,7 @@ function sendListProducts(body, titleModal, contentModal) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  showUserInfo();
   const overlay = document.querySelector('.overlay');
   const modal = document.getElementById('modalExito');
   const hideModal = document.querySelector('.close');
@@ -134,3 +135,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 });
+
+function showUserInfo() {
+  const nameProfile = document.querySelector('.nameProfile')
+  const modeProfile = document.querySelector('.modeProfile')
+  const userName = sessionStorage.getItem('user')
+  const permission = sessionStorage.getItem('permission')
+
+  nameProfile.innerHTML = userName
+  modeProfile.innerHTML = permission
+  
+}
