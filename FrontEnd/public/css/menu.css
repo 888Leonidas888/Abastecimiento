@@ -9,21 +9,23 @@ body {
 }
 
 .boxOptions {
-  width: 70%;
+  width: 50%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .supply,
 .products,
 .users {
-  border: 2px solid var(--grey-border);
-  padding: 10px;
+  /* border: 2px solid var(--grey-border); */
+  padding: 20px;
   border-radius: 8px;
-  width: 200px;
+  width: 250px;
+  height: 250px;
   text-decoration: none;
   margin: 16px;
+  box-shadow: var(--box-shadow);
 }
 
 .boxProducts,
@@ -31,20 +33,108 @@ body {
 .boxUsers {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .supply:hover,
 .products:hover,
 .users:hover {
-  transform: var(--scale-button);
-  box-shadow: var(--box-shadow);
+  /* transform: var(--scale-button); */
+  /* box-shadow: var(--box-shadow); */
+}
+
+/* .supply:hover {
+  background-color: rgb(74, 187, 187);
+  box-shadow: var(--box-shadow-supply);
+} */
+
+.supply:focus .boxTittle h3,
+.supply:focus .boxTittle p,
+.supply:focus .boxArrow .arrow_forward,
+.products:focus .boxTittle h3,
+.products:focus .boxTittle p,
+.products:focus .boxArrow .arrow_forward,
+.users:focus .boxTittle h3,
+.users:focus .boxTittle p,
+.users:focus .boxArrow .arrow_forward {
+  color: white;
+}
+
+.supply:focus {
+  background: linear-gradient(
+    to left, 
+    rgb(74, 187, 187), 
+    rgb(63, 161, 161) /* Color más oscuro */
+  );
+}
+
+.products:focus {
+  background: linear-gradient(
+    to left, 
+    rgb(252, 146, 60), 
+    rgb(210, 120, 50) /* Color más oscuro */
+  );
+}
+
+.users:focus {
+  background: linear-gradient(
+    to left, 
+    rgb(182, 114, 199), 
+    rgb(143, 89, 156) /* Color más oscuro */
+  );
 }
 
 .boxOptions span {
-  font-size: 64px;
-  margin: 20px 0px;
+  font-size: 40px;
+  margin: 0px 0px;
+}
+
+.boxSpan {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.boxIconDescription {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.forklift {
+  color: rgb(0, 105, 105);
+}
+
+.description {
+  color: rgb(199, 90, 0);
+}
+
+.manage_accounts {
+  color: rgb(121, 0, 151);
+}
+
+.boxArrow {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.boxArrow span {
+  font-size: 24px;
+}
+
+.boxTittle {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.boxTittle h3 {
+  margin: 10px 0px 10px 0px;
 }
 
 @media only screen and (max-width: 450px) {

@@ -49,10 +49,12 @@ app.get('/nopallet', (req, res) => {
 
 app.get("/dataUsers", async (req, res) => {
   try {
+    // const token = localStorage.getItem('token')
     const { dni } = req.query;
     const response = await axios.get("http://localhost:8000/api/v1/users", {
       params: { dni },
       headers: {
+        "Authentication": token,
         "Content-Type": "application/json",
       },
     });

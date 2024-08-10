@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttonAdd = document.getElementById("addUser");
   const modalAddUser = document.getElementById("modalAddUser");
   const modalUpdateUser = document.getElementById("modalUpdateUser");
-  const modalDeleteUser = document.getElementById("modalDeleteUser"); 
+  const modalDeleteUser = document.getElementById("modalDeleteUser");
   const closeAddUser = document.getElementById("closeAddUser");
   const closeUpdateUser = document.getElementById("closeUpdateUser");
   const boxNoDelete = document.querySelector(".boxNoDelete");
@@ -42,11 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
   boxYesDelete.addEventListener("click", () => {
     deleteUser();
     closeModal(modalDeleteUser, overlay);
-  })
-
-  document.getElementById('hola').addEventListener('click', () => {
-    activateBarSuccess();
   });
+
+  // document.getElementById('hola').addEventListener('click', () => {
+  //   activateBarSuccess();
+  // });
 
   // userUpdate.addEventListener('click', async (event) => {
   //   event.preventDefault();
@@ -93,9 +93,11 @@ function closeModal(modal, overlay) {
 }
 
 function tableUsers() {
+  const token = localStorage.getItem('token')
   fetch("/dataUsers", {
     method: "GET",
     headers: {
+      "Authentication": token,
       "Content-Type": "application/json",
     },
   })
@@ -132,7 +134,7 @@ function tableUsers() {
         tr.querySelector(".deleteUser").addEventListener("click", () => {
           selectedDNI = tr.querySelector(".userDNI").textContent;
           showModal(modalDeleteUser, overlay);
-          console.log('click', selectedDNI)
+          console.log("click", selectedDNI);
         });
 
         tbody.appendChild(tr);
@@ -240,11 +242,11 @@ function clearForm() {
 }
 
 function activateBarSuccess() {
-  const barSuccess = document.querySelector('.barSuccess');
+  const barSuccess = document.querySelector(".barSuccess");
   if (barSuccess) {
-    barSuccess.classList.add('activate');
+    barSuccess.classList.add("activate");
     setTimeout(() => {
-      barSuccess.classList.remove('activate');
+      barSuccess.classList.remove("activate");
     }, 2000); // 2000 ms = 2 seconds
   }
 }

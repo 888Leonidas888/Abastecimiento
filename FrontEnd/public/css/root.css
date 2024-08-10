@@ -9,6 +9,7 @@
     --grey-button: rgb(231, 231, 231);
     --grey-button-hover: rgb(219, 219, 219);
     --box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    --box-shadow-supply: 0 0 20px rgb(74, 187, 187);
     --button-hover:rgb(184, 184, 184);
     --scale-button: scale(1.01)
 }
