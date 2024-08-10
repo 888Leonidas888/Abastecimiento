@@ -18,35 +18,74 @@
   </head>
   <body>
     <div class="login">
-      <div class="imageLogin">
-        <!-- <img src="/img/imageLogin.jpg" alt=""> -->
-      </div>
-      <div class="formLogin">
-        <h1>Bienvenido!</h1>
-        <form>
-          <div>
-            <!-- <label for="username">Usuario:</label> -->
-            <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Usuario"
-              required
-            />
-          </div>
-          <div>
-            <!-- <label for="password">Contraseña:</label> -->
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Contraseña"
-              required
-            />
-          </div>
-          <button type="submit">Iniciar Sesión</button>
-        </form>
-      </div>
+      <h1>Bienvenido!</h1>
+      <form id="loginForm">
+        <div>
+          <!-- <label for="username">Usuario:</label> -->
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Usuario"
+            required
+          />
+        </div>
+        <div>
+          <!-- <label for="password">Contraseña:</label> -->
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Contraseña"
+            required
+          />
+        </div>
+        <button type="submit">Iniciar Sesión</button>
+      </form>
     </div>
   </body>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        const response = await fetch('http://localhost:8000/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                'username': username,
+                'password': password
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Login failed');
+        }
+        // accesing to the response json and taking the token from it to store locally. USAGE IS NOT READY YET FOR UPCOMING ENDPOINTS
+        const data = await response.json();
+        const token = data.access_token;
+        const user = data.user;
+        const permission = data.permission;
+        const id_user = data.id_user;
+
+
+        // SAVING IT
+        sessionStorage.setItem('token', token);
+        sessionStorage.setItem('user', user);
+        sessionStorage.setItem('permission', permission);
+        sessionStorage.setItem('id_user', id_user);
+        
+
+        
+        window.location.href = '/menu';
+    } catch (error) {
+        alert('Inicio fallido');
+    }
+  });
+  </script>
 </html>

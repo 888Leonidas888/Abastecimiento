@@ -54,13 +54,13 @@ body {
 }
 
 .check {
-    border: 2px solid var(--color-green);
-    margin-left: 20px;
-  }
-  
-  .check span {
-    color: var(--color-green);
-  }
+  border: 2px solid var(--color-green);
+  margin-left: 20px;
+}
+
+.check span {
+  color: var(--color-green);
+}
 
 .error:hover,
 .check:hover {
@@ -96,4 +96,21 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.733);
   backdrop-filter: blur(5px);
+}
+
+.close {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.close span {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--grey-border);
+  cursor: pointer;
+}
+
+.close span:hover {
+  color: var(--button-hover);
 }

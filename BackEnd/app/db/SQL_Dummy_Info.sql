@@ -37,18 +37,16 @@ INSERT INTO products (id, batch_id, sku, description, origin, destination, statu
 ('4460178', 'ad2538e', 232425, 'Inca Kola-can 350mlx24', 'SE-5-7', 'SE-6-9', 'error', '2024-07-06', 'media', 'GQ9DCUJL01DAU1SM53UE9ZH5U', '2024-06-27', '2024-07-13');
 
 INSERT INTO users (id, dni, user, password, name_user, last_name_user, permission, created_at, updated_at) VALUES 
-('794a373', '66466869', 'bwilliams', 'hrFh4D4U9SFG', 'Bob', 'Williams', 'operador', '2024-07-08', '2024-06-30'), 
-('e4c1def', '18218525', 'ajones', 'IlGRF3XoqshP', 'Alice', 'Jones', 'administrador', '2024-07-02', '2024-07-14'),
-('d5f6abc', '56789012', 'mjohnson', 's7g8h9j0k1L2', 'Mary', 'Johnson', 'usuario', '2024-07-10', '2024-07-11'),
-('g6h7ijk', '34567890', 'kroberts', 'Z1x2c3v4b5N6', 'Karen', 'Roberts', 'operador', '2024-07-05', '2024-07-09'),
-('i8j9klm', '12345678', 'pwalker', 'Q1w2e3r4t5Y6', 'Paul', 'Walker', 'administrador', '2024-07-01', '2024-07-07'),
-('k0l1m2n', '98765432', 'dsmith', 'A1s2d3f4g5H6', 'David', 'Smith', 'usuario', '2024-07-03', '2024-07-12');
-
+('7dfc85a3-4d08-4ab5-a4c3-dc68c08e61e5', '12121212', 'Nami', '$2b$12$XSO23xee/BeEfqtWYCq6A.yrTPlu5J9gC.kxwlN0ePbA4urRTOWzm', 'Nami', 'Unthinkable', 'operador', '2024-08-08', '2024-08-08'),
+('8ce07df3-3047-4c1a-a317-df4dbcac945a', '76392794', 'Plainsphere', '$2b$12$b8rAZvQn/8/ZS6dzSTsrY.xwXco4Al36CXMsgoGflNL.oELK2W8RW', 'Ennzo', 'Ponce', 'administrador', '2024-08-02', '2024-08-02'),
+('04162dbf-0bf6-4dcd-84ce-17fc53702d59', '77777777', 'aprado', '$2b$12$l7hPU6e0BBzKCxJCq0OYf.AQQcGO6UTkAyWahCUoeCHbw2XTQOnga', 'Alexander', 'Prado ', 'administrador', '2024-08-08', '2024-08-08'),
+('7510978e-4318-43c4-8442-3a853c4b1d89', '99999999', 'echanjan', '$2b$12$IHnUiagxv6jDh1NyxzZdRObq8kOGuewuQhaniQknDN7GTsBfZwCVi', 'Erick', 'Chanjan', 'administrador', '2024-08-08', '2024-08-08'),
+('2fe045f3-e604-4797-933b-eed4478f157c', '88888888', 'jescriba', '$2b$12$GevxPw1SUVxceC89n2TrAesRwq8/SwxkGdrgWOdqddAwt.szzVmKC', 'Jhony', 'Escriba', 'administrador', '2024-08-08', '2024-08-08');
 
 INSERT INTO productivity (id_user, qr_pallet, created_at) VALUES 
-('794a373', '728WHSBQ9I161UOPXOPHT3BW7', '2024-07-09'), 
-('d5f6abc', 'OWZ6SEFYWQQIHTAHQQKDI4WLF', '2024-06-30'), 
-('794a373', '28ZJMAJ8E96D8R94RX8QH01F7', '2024-06-26'), 
-('e4c1def', '7HLX22A90R97WAYEXFSQ1N7V8', '2024-07-04'), 
-('d5f6abc', 'IQAM2ODILV9Q6H2I56DKCLMGR', '2024-07-05'), 
-('e4c1def', 'CHVXAP49M84FULHYB2351HVBW', '2024-06-28'); 
+('8ce07df3-3047-4c1a-a317-df4dbcac945a', '728WHSBQ9I161UOPXOPHT3BW7', '2024-07-09'),
+('7dfc85a3-4d08-4ab5-a4c3-dc68c08e61e5', 'OWZ6SEFYWQQIHTAHQQKDI4WLF', '2024-06-30'),
+('7510978e-4318-43c4-8442-3a853c4b1d89', '28ZJMAJ8E96D8R94RX8QH01F7', '2024-06-26'),
+('04162dbf-0bf6-4dcd-84ce-17fc53702d59', '7HLX22A90R97WAYEXFSQ1N7V8', '2024-07-04'),
+('2fe045f3-e604-4797-933b-eed4478f157c', 'IQAM2ODILV9Q6H2I56DKCLMGR', '2024-07-05'),
+('7dfc85a3-4d08-4ab5-a4c3-dc68c08e61e5', 'CHVXAP49M84FULHYB2351HVBW', '2024-06-28'); 

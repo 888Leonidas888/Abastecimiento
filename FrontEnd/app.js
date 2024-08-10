@@ -49,13 +49,13 @@ app.get('/nopallet', (req, res) => {
 
 app.get("/dataUsers", async (req, res) => {
   try {
-    // const token = localStorage.getItem('token')
+    const authorizationToken = req.headers.authorization;
     const { dni } = req.query;
     const response = await axios.get("http://localhost:8000/api/v1/users", {
       params: { dni },
       headers: {
-        "Authentication": token,
-        "Content-Type": "application/json",
+        "Authorization": authorizationToken,
+        "Content-Type": "application/json"
       },
     });
     res.json(response.data);
@@ -66,6 +66,7 @@ app.get("/dataUsers", async (req, res) => {
 });
 
 app.post("/addUser", async (req, res) => {
+  const authorizationToken = req.headers.authorization;
   const { dni, user, name_user, last_name_user, permission, password } =
     req.body;
   try {
@@ -80,7 +81,8 @@ app.post("/addUser", async (req, res) => {
         password: password,
       },
       {
-        header: {
+        headers: {
+          "Authorization": authorizationToken,
           "Content-Type": "application/json",
         },
       }
@@ -93,6 +95,7 @@ app.post("/addUser", async (req, res) => {
 });
 
 app.put("/updateUser/:dni", async (req, res) => {
+  const authorizationToken = req.headers.authorization
   const { dni } = req.params;
   const { password, name_user, last_name_user, permission } = req.body;
   try {
@@ -106,6 +109,7 @@ app.put("/updateUser/:dni", async (req, res) => {
       },
       {
         headers: {
+          "Authorization": authorizationToken,
           "Content-Type": "application/json",
         },
       }
@@ -118,12 +122,14 @@ app.put("/updateUser/:dni", async (req, res) => {
 });
 
 app.delete("/updateUser/:dni", async (req, res) => {
+  const authorizationToken = req.headers.authorization;
   const { dni } = req.params;
   try {
     const response = await axios.delete(
       `http://localhost:8000/api/v1/users/${dni}`,
       {
         headers: {
+          "Authorization": authorizationToken,
           "Content-Type": "application/json",
         },
       }

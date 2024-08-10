@@ -26,7 +26,7 @@ class CreatedProducts(Product):
 
 
 class UpdateProduct(BaseModel):
-    status: Literal['error', 'completado']
+    status: Literal['proceso', 'error', 'completado']
     id_user: str
 
 

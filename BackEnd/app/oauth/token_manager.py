@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from jose import jwt, JWTError
 from os import getenv
 from dotenv import load_dotenv
+from bcrypt import hashpw, gensalt, checkpw
 
 load_dotenv()
 
@@ -28,11 +29,13 @@ def get_user(table, username):
     else:
         raise Exception(f"Username {username} not found on DB")
     
+def hash_password(password):
+    salt = gensalt()
+    hashed = hashpw(password.encode('utf-8'), salt)
+    return hashed.decode('utf-8')
+
 def verify_password(form_pass, db_pass):
-    if form_pass == db_pass:
-        return True
-    else:
-        return False
+    return checkpw(form_pass.encode('utf-8'), db_pass.encode('utf-8'))
 
 def auth_user(table, username, password):
     user = get_user(table, username)
@@ -75,3 +78,9 @@ async def get_admin_user(current_user = Depends(get_current_user)):
     if current_user.get('permission') != 'administrador':
         raise HTTPException(status_code=403, detail="Not enough permissions")
     return current_user
+
+async def get_for_all_user(current_user = Depends(get_current_user)):
+    if current_user.get('permission') != 'operador' or current_user.get('permission') != 'administrador':
+        raise HTTPException(status_code=403, detail="Not enough permissions")
+    return current_user
+
