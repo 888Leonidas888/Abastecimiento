@@ -35,18 +35,6 @@ app.get('/supply', (req, res) => {
   res.render('supply');
 });
 
-app.get('/pallets', (req, res) => {
-  res.render('pallets');
-});
-
-app.get('/yespallet', (req, res) => {
-  res.render('yespallet');
-});
-
-app.get('/nopallet', (req, res) => {
-  res.render('nopallet');
-});
-
 app.get("/dataUsers", async (req, res) => {
   try {
     const authorizationToken = req.headers.authorization;
