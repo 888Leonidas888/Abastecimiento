@@ -80,7 +80,7 @@ async def get_admin_user(current_user = Depends(get_current_user)):
     return current_user
 
 async def get_for_all_user(current_user = Depends(get_current_user)):
-    if current_user.get('permission') != 'operador' or current_user.get('permission') != 'administrador':
+    if current_user.get('permission') != 'operador' and current_user.get('permission') != 'administrador':
         raise HTTPException(status_code=403, detail="Not enough permissions")
     return current_user
 
