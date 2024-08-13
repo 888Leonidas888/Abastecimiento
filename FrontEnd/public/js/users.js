@@ -6,6 +6,7 @@ const closeUpdateUser = document.getElementById("closeUpdateUser");
 const overlay = document.getElementById("overlay");
 const userCreate = document.getElementById("userCreate");
 const userUpdate = document.getElementById('userUpdate')
+const showPasswordButton = document.getElementById('showPassword')
 
 document.addEventListener("DOMContentLoaded", () => {
   tableUsers();
@@ -59,6 +60,19 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error('Error al actualizar el usuario');
     }
   });
+  if (showPasswordButton) {
+    showPasswordButton.addEventListener('mousedown', function () {
+      document.getElementById('updateConreseña').type = 'text';
+    });
+
+    showPasswordButton.addEventListener('mouseup', function () {
+      document.getElementById('updateConreseña').type = 'password';
+    });
+
+    showPasswordButton.addEventListener('mouseleave', function () {
+      document.getElementById('updateConreseña').type = 'password';
+    });
+  }
 });
 
 let selectedDNI;
@@ -191,3 +205,4 @@ function showUserInfo() {
   modeProfile.innerHTML = permission
   
 }
+
