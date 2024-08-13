@@ -95,12 +95,16 @@ def update_user(dni: str, user_update: UserUpdate):
     user_to_update = {key: value for key,
                       value in result[0].items() if key not in keys_to_remove}
     updated_user = user_update.model_dump(exclude_unset=True)
+    if updated_user['password'] == '':
+        updated_user.pop('password')
+    else:
+        updated_user_password = hash_password(updated_user['password'])
+        updated_user['password'] = updated_user_password
     updated_user_permission = updated_user['permission']
     if updated_user_permission not in permissions_valid:
         database.disconnect()
         raise HTTPException(status_code=400,
                             detail=f'Permision {updated_user_permission} invalid')
-
     updated_user['updated_at'] = date.today()
     database.update('users', user_to_update, **updated_user)
     # No longer required as a response. Omitted....
