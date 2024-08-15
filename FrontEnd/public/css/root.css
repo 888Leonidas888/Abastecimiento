@@ -108,6 +108,7 @@ select {
     border: 1px solid var(--grey-border);
     width: 100%;
     outline: none;
+    height: 35px;
 }
 
 input:hover,
@@ -130,6 +131,7 @@ button {
     width: 100%;
     background-color: var(--grey-button);
     cursor: pointer;
+    height: 35px;
 }
 
 button:hover {
