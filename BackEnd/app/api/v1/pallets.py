@@ -52,7 +52,8 @@ def update_pallet(qr_pallet: str, pallet_update: UpdateProduct):
     }
 
     status_product = {
-        'status': update_product['status']
+        'status': update_product['status'],
+        'updated_at': date.today()
     }
 
     user_productivity = {
