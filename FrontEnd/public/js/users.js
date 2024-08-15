@@ -1,16 +1,21 @@
 const buttonAdd = document.getElementById("addUser");
 const modalAddUser = document.getElementById("modalAddUser");
 const modalUpdateUser = document.getElementById("modalUpdateUser");
+const modalDeleteUser = document.getElementById("modalDeleteUser");
 const closeAddUser = document.getElementById("closeAddUser");
 const closeUpdateUser = document.getElementById("closeUpdateUser");
+const boxNoDelete = document.querySelector(".boxNoDelete");
+const boxYesDelete = document.querySelector(".boxYesDelete");
 const overlay = document.getElementById("overlay");
 const userCreate = document.getElementById("userCreate");
-const userUpdate = document.getElementById('userUpdate')
-const showPasswordButton = document.getElementById('showPassword')
+const userUpdate = document.getElementById('userUpdate');
+const showPasswordButton = document.getElementById('showPassword');
+const permissionUser = document.querySelector('.permissionUser');
 
 document.addEventListener("DOMContentLoaded", () => {
   tableUsers();
   showUserInfo();
+  colorPermission();
 
   buttonAdd.addEventListener("click", () => {
     showModal(modalAddUser, overlay);
@@ -27,6 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
   userCreate.addEventListener("click", (event) => {
     event.preventDefault();
     createUser();
+    closeModal(modalAddUser, overlay);
+    tableUsers();
+    activateBarSuccess();
   });
 
   userUpdate.addEventListener('click', async (event) => {
@@ -60,6 +68,18 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error('Error al actualizar el usuario');
     }
   });
+
+  boxNoDelete.addEventListener("click", () => {
+    closeModal(modalDeleteUser, overlay);
+  });
+
+  boxYesDelete.addEventListener("click", () => {
+    deleteUser();
+    closeModal(modalDeleteUser, overlay);
+    tableUsers();
+    activateBarSuccess();
+  })
+
   if (showPasswordButton) {
     showPasswordButton.addEventListener('mousedown', function () {
       document.getElementById('updateConreseña').type = 'text';
@@ -88,7 +108,7 @@ function closeModal(modal, overlay) {
 }
 
 function tableUsers() {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('token');
   fetch("/dataUsers", {
     method: "GET",
     headers: {
@@ -105,14 +125,14 @@ function tableUsers() {
         const tr = document.createElement("tr");
 
         tr.innerHTML = `
-                    <td><span class="material-symbols-rounded editUser">edit</span></td>
-                    <td class="userDNI">${registro.dni}</td>
-                    <td>${registro.user}</td>
-                    <td>${registro.name_user}</td>
-                    <td>${registro.last_name_user}</td>
-                    <td>${registro.permission}</td>
-                    <td><span class="material-symbols-rounded deleteUser">delete</span></td>
-                  `;
+          <td>${registro.user}</td>
+          <td class="userDNI">${registro.dni}</td>
+          <td>${registro.name_user}</td>
+          <td>${registro.last_name_user}</td>
+          <td class="permissionUser">${registro.permission}</td>
+          <td class="iconTable"><span class="material-symbols-rounded editUser">edit</span></td>
+          <td class="iconTable"><span class="material-symbols-rounded deleteUser">delete</span></td>
+        `;
 
         tr.querySelector(".editUser").addEventListener("click", () => {
           selectedDNI = tr.querySelector('.userDNI').textContent;
@@ -132,6 +152,8 @@ function tableUsers() {
 
         tbody.appendChild(tr);
       });
+
+      colorPermission();
     })
     .catch((error) => console.error("Error al cargar los datos:", error));
 }
@@ -167,13 +189,29 @@ function createUser() {
     })
     .then((data) => {
       console.log("Usuario creado:", data);
-      tableUsers();
       clearForm();
-      closeModal(modalAddUser, overlay);
     })
     .catch((error) => {
       console.error("Error al crear el usuario:", error);
     });
+}
+
+function deleteUser() {
+  const response = fetch(`/updateUser/${selectedDNI}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    const result = response.json();
+    console.log("Usuario eliminado:", result);
+    // alert("Usuario eliminado");
+    console.log(result.message);
+  } else {
+    console.error("Error al actualizar el usuario");
+  }
 }
 
 function clearForm() {
@@ -196,13 +234,24 @@ function activateBarSuccess() {
 }
 
 function showUserInfo() {
-  const nameProfile = document.querySelector('.nameProfile')
-  const modeProfile = document.querySelector('.modeProfile')
-  const userName = sessionStorage.getItem('user')
-  const permission = sessionStorage.getItem('permission')
+  const nameProfile = document.querySelector('.nameProfile');
+  const modeProfile = document.querySelector('.modeProfile');
+  const userName = sessionStorage.getItem('user');
+  const permission = sessionStorage.getItem('permission');
 
-  nameProfile.innerHTML = userName
-  modeProfile.innerHTML = permission
-  
+  if (nameProfile && modeProfile) {
+    nameProfile.innerHTML = userName;
+    modeProfile.innerHTML = permission;
+  }
 }
 
+function colorPermission() {
+  const permissions = document.querySelectorAll('.permissionUser');
+  permissions.forEach(permission => {
+    if (permission.textContent === 'administrador') {
+      permission.classList.add('colorAdministrador');
+    } else {
+      permission.classList.add('colorOperador');
+    }
+  });
+}
