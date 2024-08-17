@@ -89,9 +89,14 @@ function readExcelConvertToObject() {
  * @param {HTMLElement} titleModal - The element displaying the modal title.
  * @param {HTMLElement} contentModal - The element displaying the modal content.
  */
-function sendListProducts(body, titleModal, contentModal) {
+function sendListProducts(body, titleModal, contentModal, userSession) {
+  const headers = {
+    Authorization: `Bearer ${userSession.token}`,
+    'Content-Type': 'application/json',
+  };
+
   axios
-    .post(endPointProducts, body)
+    .post(endPointProducts, body, { headers })
     .then((response) => {
       console.log('Data successfully sent to the API:', response.data);
       let totalProducts = response.data.total_products;
@@ -108,14 +113,43 @@ function sendListProducts(body, titleModal, contentModal) {
     });
 }
 
+/**
+ * Displays the user's profile information in the UI.
+ *
+ * This function updates the UI with the user's name and permission level
+ * by setting the inner HTML of specific elements with the corresponding values
+ * from the `userSession` object.
+ *
+ * @param {Object} userSession - The current user session object.
+ * @param {string} userSession.userName - The name of the user to display.
+ * @param {string} userSession.permission - The permission level of the user to display.
+ *
+ * @returns {void}
+ */
+function showUserInfo(userSession) {
+  const nameProfile = document.querySelector('.nameProfile');
+  const modeProfile = document.querySelector('.modeProfile');
+
+  nameProfile.innerHTML = userSession.userName;
+  modeProfile.innerHTML = userSession.permission;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  showUserInfo();
+  const userSession = {
+    userName: sessionStorage.getItem('user'),
+    permission: sessionStorage.getItem('permission'),
+    idUser: sessionStorage.getItem('id_user'),
+    token: sessionStorage.getItem('token'),
+  };
+
   const overlay = document.querySelector('.overlay');
   const modal = document.getElementById('modalExito');
   const hideModal = document.querySelector('.close');
   const titleModal = document.querySelector('#modalExito h3');
   const contentModal = document.querySelector('#modalExito h4');
   const sendProducts = document.getElementById('send-products');
+
+  showUserInfo(userSession);
 
   hideModal.addEventListener('click', () => {
     closeModal(modal, overlay);
@@ -125,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     readExcelConvertToObject()
       .then((body) => {
         if (body) {
-          sendListProducts(body, titleModal, contentModal);
+          sendListProducts(body, titleModal, contentModal, userSession);
           showModal(modal, overlay);
         }
       })
@@ -135,14 +169,3 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 });
-
-function showUserInfo() {
-  const nameProfile = document.querySelector('.nameProfile')
-  const modeProfile = document.querySelector('.modeProfile')
-  const userName = sessionStorage.getItem('user')
-  const permission = sessionStorage.getItem('permission')
-
-  nameProfile.innerHTML = userName
-  modeProfile.innerHTML = permission
-  
-}
