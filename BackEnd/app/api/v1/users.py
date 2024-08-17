@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from app.schemas.user import User, UserCreate, UserUpdate
 from typing import List, Dict, Optional, Union
-from app.utils.helpers import generate_id
+from app.utils.helpers import generate_id, create_query_for_delete
 from app.db.DB_Manager import Database
 from datetime import date
 from app.oauth.token_manager import hash_password
@@ -19,7 +19,8 @@ def read_users(dni: Optional[str] = None):
         database.connect()
         result = database.read('users', **params)
         keys_to_remove = ['updated_at', 'created_at', 'password']
-        structured_data = map(lambda x: {key: value for key, value in x.items() if key not in keys_to_remove}, result)
+        structured_data = map(lambda x: {
+                              key: value for key, value in x.items() if key not in keys_to_remove}, result)
         structured_data = list(structured_data)
         database.disconnect()
 
@@ -32,7 +33,8 @@ def read_users(dni: Optional[str] = None):
         database.connect()
         result = database.read_all('users')
         keys_to_remove = ['updated_at', 'created_at', 'password']
-        structured_data = map(lambda x: {key: value for key, value in x.items() if key not in keys_to_remove}, result)
+        structured_data = map(lambda x: {
+                              key: value for key, value in x.items() if key not in keys_to_remove}, result)
         structured_data = list(structured_data)
         database.disconnect()
         return {'users': structured_data}
@@ -40,7 +42,7 @@ def read_users(dni: Optional[str] = None):
 
 @router.post('/users', response_model=User)
 def create_user(user: UserCreate):
-    
+
     new_id = generate_id()
     new_user = user.model_dump()
     permission = new_user['permission']
@@ -51,16 +53,15 @@ def create_user(user: UserCreate):
     new_user['password'] = hashed_password
     if permission not in permissions_valid:
         raise HTTPException(status_code=400,
-                                detail=f'Permision {permission} invalid')
+                            detail=f'Permision {permission} invalid')
     database = Database()
     database.connect()
     params = {'user': new_user['user']}
     result = database.read('users', **params)
     if result:
         database.disconnect()
-        raise HTTPException(status_code=400,
-                                detail="User already exists")
-        
+        raise HTTPException(status_code=400, detail="User already exists")
+
     database.create('users', **new_user)
     database.disconnect()
     return new_user
@@ -68,14 +69,40 @@ def create_user(user: UserCreate):
 
 @router.delete('/users/{dni}', response_model=Dict[str, str])
 def delete_user(dni: str):
-    if not dni:
-        raise HTTPException(status_code=404, detail='User not found')
-    params = {'dni': dni}
-    database = Database()
-    database.connect()
-    database.delete('users', **params)
-    database.disconnect()
-    return {'message': f'User identified with {dni} was deleted successfully'}
+    try:
+        db = Database()
+        db.connect()
+        db.connection.start_transaction()
+        users = db.read('users', dni=dni)
+
+        if users:
+            user = users[0]
+            id_user = user['id']
+
+            'delete id_user in table productivity'
+            q, v = create_query_for_delete('productivity', id_user=id_user)
+            db.cursor.execute(q, v)
+
+            'delete dni in table users'
+            q, v = create_query_for_delete('users', dni=dni)
+            db.cursor.execute(q, v)
+
+            'confirm transaction'
+            db.connection.commit()
+            return {'message': f'User identified with {dni} was deleted successfully'}
+        else:
+            raise HTTPException(
+                status_code=404, detail=f'User with {dni} not found.')
+    except HTTPException as h:
+        if db.connection:
+            db.connection.rollback()
+        raise h
+    except Exception as e:
+        if db.connection:
+            db.connection.rollback()
+        raise HTTPException(status_code=500, detail=f'{e}')
+    finally:
+        db.disconnect()
 
 
 @router.put('/users/{dni}')
