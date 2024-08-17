@@ -82,8 +82,8 @@ body {
 .users:focus {
   background: linear-gradient(
     to left, 
-    rgb(182, 114, 199), 
-    rgb(143, 89, 156) /* Color más oscuro */
+    rgb(124, 199, 114), 
+    rgb(89, 156, 95) /* Color más oscuro */
   );
 }
 
@@ -113,7 +113,7 @@ body {
 }
 
 .manage_accounts {
-  color: rgb(121, 0, 151);
+  color: rgb(0, 100, 17);
 }
 
 .boxArrow {
