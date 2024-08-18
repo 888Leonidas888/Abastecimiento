@@ -57,10 +57,19 @@ def create_user(user: UserCreate):
     database = Database()
     database.connect()
     params = {'user': new_user['user']}
+
+    'search if exist user'
     result = database.read('users', **params)
     if result:
         database.disconnect()
         raise HTTPException(status_code=400, detail="User already exists")
+
+    'search if exist dni'
+    exists_dni = database.read('users', dni=new_user['dni'])
+    if exists_dni:
+        database.disconnect()
+        raise HTTPException(status_code=400,
+                            detail=f"User with dni {new_user['dni']} already exists")
 
     database.create('users', **new_user)
     database.disconnect()
@@ -107,8 +116,6 @@ def delete_user(dni: str):
 
 @router.put('/users/{dni}')
 def update_user(dni: str, user_update: UserUpdate):
-    if not dni:
-        raise HTTPException(status_code=404, detail='User not found')
     params = {'dni': dni}
     database = Database()
     database.connect()
