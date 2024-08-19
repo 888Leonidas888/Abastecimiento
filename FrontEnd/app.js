@@ -78,7 +78,8 @@ app.post("/addUser", async (req, res) => {
     res.json(response.data);
   } catch (error) {
     console.error("Error al llamar a la API externa:", error.message);
-    res.status(500).send("Error en la solicitud a la API externa");
+    res.status(error.response.status).send(error.response.data);
+    alert(error.response.data);
   }
 });
 

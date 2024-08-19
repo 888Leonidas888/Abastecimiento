@@ -10,6 +10,7 @@ const overlay = document.getElementById("overlay");
 const userCreate = document.getElementById("userCreate");
 const userUpdate = document.getElementById('userUpdate');
 const showPasswordButton = document.getElementById('showPassword');
+const showPasswordButtonAdd = document.getElementById('showPasswordAdd');
 const permissionUser = document.querySelector('.permissionUser');
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -33,8 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     createUser();
     closeModal(modalAddUser, overlay);
-    tableUsers();
-    activateBarSuccess();
   });
 
   userUpdate.addEventListener('click', async (event) => {
@@ -64,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log('Usuario actualizado:', result);
       tableUsers();
       closeModal(modalUpdateUser, overlay);
+      activateBarSuccess();
     } else {
       console.error('Error al actualizar el usuario');
     }
@@ -76,21 +76,40 @@ document.addEventListener("DOMContentLoaded", () => {
   boxYesDelete.addEventListener("click", () => {
     deleteUser();
     closeModal(modalDeleteUser, overlay);
-    tableUsers();
     activateBarSuccess();
   })
 
   if (showPasswordButton) {
     showPasswordButton.addEventListener('mousedown', function () {
       document.getElementById('updateConreseña').type = 'text';
+      showPasswordButton.textContent = 'visibility_off'
     });
 
     showPasswordButton.addEventListener('mouseup', function () {
       document.getElementById('updateConreseña').type = 'password';
+      showPasswordButton.textContent = 'visibility'
     });
 
     showPasswordButton.addEventListener('mouseleave', function () {
       document.getElementById('updateConreseña').type = 'password';
+      showPasswordButton.textContent = 'visibility'
+    });
+  }
+
+  if (showPasswordButtonAdd) {
+    showPasswordButtonAdd.addEventListener('mousedown', function () {
+      document.getElementById('contraseña').type = 'text';
+      document.getElementById('showPasswordAdd').textContent = 'visibility_off'
+    });
+
+    showPasswordButtonAdd.addEventListener('mouseup', function () {
+      document.getElementById('contraseña').type = 'password';
+      document.getElementById('showPasswordAdd').textContent = 'visibility'
+    });
+
+    showPasswordButtonAdd.addEventListener('mouseleave', function () {
+      document.getElementById('contraseña').type = 'password';
+      document.getElementById('showPasswordAdd').textContent = 'visibility'
     });
   }
 });
@@ -182,37 +201,51 @@ function createUser() {
     }),
   })
     .then((response) => {
-      if (!response.ok) {
-        throw new Error("Error en la solicitud al servidor");
+      if(!response.ok) {
+        return response.json().then((errorData) => {
+          throw new Error(errorData.detail )
+        })
       }
       return response.json();
     })
     .then((data) => {
       console.log("Usuario creado:", data);
+      tableUsers();
       clearForm();
+      activateBarSuccess();
     })
     .catch((error) => {
       console.error("Error al crear el usuario:", error);
+      alert(error.message)
     });
 }
 
 function deleteUser() {
-  const response = fetch(`/updateUser/${selectedDNI}`, {
+  fetch(`/updateUser/${selectedDNI}`, {
     method: "DELETE",
     headers: {
       "Authorization": `Bearer ${sessionStorage.getItem('token')}`,
       "Content-Type": "application/json",
     },
-  });
-  if (response.ok) {
-    const result = response.json();
-    console.log("Usuario eliminado:", result);
-    // alert("Usuario eliminado");
-    console.log(result.message);
-  } else {
-    console.error("Error al actualizar el usuario");
-  }
+  })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Error al eliminar el usuario");
+      }
+    })
+    .then(result => {
+      console.log("Usuario eliminado:", result);
+      console.log(result.message);
+      tableUsers(); // Actualiza la tabla de usuarios
+    })
+    .catch(error => {
+      console.error("Error en la solicitud:", error);
+    });
 }
+
+
 
 function clearForm() {
   document.getElementById('dni').value = '';
