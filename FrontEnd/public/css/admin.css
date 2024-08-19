@@ -196,7 +196,7 @@ body {
 }
 
 
-/* MODAL CREAR USUARIO */
+/* MODAL */
 
 #modalAddUser,
 #modalUpdateUser,
@@ -276,6 +276,25 @@ body {
 .check:hover {
   transform: var(--scale-button);
   box-shadow: var(--box-shadow);
+}
+
+.inputPassword {
+  display: flex;
+  align-items: center;
+}
+
+#updateConreseña,
+#contraseña {
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  height: 30px;
+}
+
+#showPassword,
+#showPasswordAdd {
+  cursor: pointer;
+  font-size: 20px;
 }
 
 @media only screen and (max-width: 450px) {

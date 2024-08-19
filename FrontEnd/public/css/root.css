@@ -100,7 +100,8 @@ td, th {
 }
 
 input,
-select {
+select,
+.inputPassword {
     padding: 5px;
     outline: none;
     margin-bottom: 10px;

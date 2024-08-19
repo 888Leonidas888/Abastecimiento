@@ -73,7 +73,13 @@
           placeholder="Nombre de usuario"
           value=""
         />
-        <input id="contraseña" type="text" placeholder="Contraseña" value="" />
+        <!-- <input id="contraseña" type="text" placeholder="Contraseña" value="" /> -->
+        
+        <div class="inputPassword">
+          <input id="contraseña" type="password" placeholder="Contraseña" />
+          <span class="material-symbols-rounded" id="showPasswordAdd"> visibility </span>
+        </div>
+
         <input id="nombre" type="text" placeholder="Nombres" value="" />
         <input id="apellido" type="text" placeholder="Apellidos" value="" />
         <!-- <input type="text" placeholder="Permiso"> -->
@@ -100,8 +106,10 @@
         </select>
         <input id="updateNombres" type="text" placeholder="Nombres" />
         <input id="updateApellidos" type="text" placeholder="Apellidos" />
-        <input id="updateConreseña" type="password" placeholder="Contraseña" />
-        <button type="button" id="showPassword">👁️</button>
+        <div class="inputPassword">
+          <input id="updateConreseña" type="password" placeholder="Contraseña" />
+          <span class="material-symbols-rounded" id="showPassword"> visibility </span>
+        </div>
         <button id="userUpdate" type="submit">Actualizar</button>
       </form>
     </div>
