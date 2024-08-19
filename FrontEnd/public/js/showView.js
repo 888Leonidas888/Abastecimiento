@@ -46,7 +46,7 @@ function renderViewAdministrator(boxOptions) {
             <span class="material-symbols-rounded manage_accounts"> arrow_forward </span>
           </div>
         </div>
-      </a>
+      </a> 
     `;
 }
 
